@@ -4,12 +4,19 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>io.vincentwinner</groupId>
+	<groupId>io.vincentwinner.toolset</groupId>
 	<artifactId>toolset-parent</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0.1</version>
+	<modules>
+		<module>domain</module>
+		<module>random</module>
+		<module>color-console</module>
+	</modules>
 
 	<properties>
+		<domain.version>1.0.1</domain.version>
+		<random.version>1.0.1</random.version>
 		<java.version>1.8</java.version>
 		<maven.compiler.source>8</maven.compiler.source>
 		<maven.compiler.target>8</maven.compiler.target>
@@ -22,6 +29,16 @@
 				<groupId>org.fusesource.jansi</groupId>
 				<artifactId>jansi</artifactId>
 				<version>2.2.0</version>
+			</dependency>
+			<dependency>
+				<groupId>io.vincentwinner.toolset</groupId>
+				<artifactId>domain</artifactId>
+				<version>${domain.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.vincentwinner.toolset</groupId>
+				<artifactId>random</artifactId>
+				<version>${random.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
