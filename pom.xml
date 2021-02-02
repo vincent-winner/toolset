@@ -12,11 +12,15 @@
 		<module>domain</module>
 		<module>random</module>
 		<module>color-console</module>
+		<module>os</module>
 	</modules>
 
 	<properties>
 		<domain.version>1.0.1</domain.version>
 		<random.version>1.0.1</random.version>
+		<colorconsole.version>1.0.1</colorconsole.version>
+		<osmodule.version>1.0.1</osmodule.version>
+
 		<java.version>1.8</java.version>
 		<maven.compiler.source>8</maven.compiler.source>
 		<maven.compiler.target>8</maven.compiler.target>
@@ -39,6 +43,16 @@
 				<groupId>io.vincentwinner.toolset</groupId>
 				<artifactId>random</artifactId>
 				<version>${random.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.vincentwinner.toolset</groupId>
+				<artifactId>color-console</artifactId>
+				<version>${colorconsole.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.vincentwinner.toolset</groupId>
+				<artifactId>os</artifactId>
+				<version>${osmodule.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
