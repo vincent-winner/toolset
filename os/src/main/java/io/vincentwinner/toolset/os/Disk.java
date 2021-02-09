@@ -5,7 +5,15 @@ import java.io.File;
 /**
  * 文件系统信息
  */
-public class FSInfo {
+public class Disk {
+
+    private Disk(){}
+    private static final class DiskInstance{
+        private static final Disk DISK = new Disk();
+    }
+    public static Disk getInstance() {
+        return DiskInstance.DISK;
+    }
 
     private static final File userDir = new File(userDir());
 
@@ -14,36 +22,6 @@ public class FSInfo {
      */
     public static String userDir(){
         return System.getProperty("user.dir");
-    }
-
-    /**
-     * Windows  \r\n
-     * Linux    \n
-     * MacOS    \r
-     * @return 当前系统行分隔符
-     */
-    public static String lineSeparator(){
-        return System.getProperty("line.separator");
-    }
-
-    /**
-     * Windows ;
-     * Linux   :
-     * MacOS   :
-     * @return 当前系统路径分隔符
-     */
-    public static String pathSeparator(){
-        return File.pathSeparator;
-    }
-
-    /**
-     * Windows \
-     * Linux   /
-     * MacOs   /
-     * @return 当前系统文件路径分隔符
-     */
-    public static String fileSeparator(){
-        return File.separator;
     }
 
     /**

@@ -13,6 +13,7 @@
 		<module>random</module>
 		<module>color-console</module>
 		<module>os</module>
+		<module>crypto</module>
 	</modules>
 
 	<properties>
@@ -33,6 +34,21 @@
 				<groupId>org.fusesource.jansi</groupId>
 				<artifactId>jansi</artifactId>
 				<version>2.2.0</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>4.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-all</artifactId>
+				<version>5.5.8</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.oshi</groupId>
+				<artifactId>oshi-core</artifactId>
+				<version>5.4.1</version>
 			</dependency>
 			<dependency>
 				<groupId>io.vincentwinner.toolset</groupId>
