@@ -10,6 +10,7 @@ public class Test {
         System.out.println(OperatingSystem.getInstance());
         System.out.println(Memory.getInstance());
         System.out.println(Disk.getInstance());
+        System.out.println(CPU.getInstance());
     }
 
 }

@@ -42,7 +42,7 @@ public class Disk {
      * usage           空间使用率
      */
     public static final class DiskHardwareInfo implements Serializable {
-        private static final long serialVersionUID = 3996093018536610267L;
+        private static final Long serialVersionUID = 3996093018536610267L;
         private final String name;
         private final String volume;
         private final String label;
@@ -52,10 +52,10 @@ public class Disk {
         private final String type;
         private final String options;
         private final String uuid;
-        private final long freeSpace;
-        private final long totalSpace;
-        private final long usedSpace;
-        private final double usage;
+        private final Long freeSpace;
+        private final Long totalSpace;
+        private final Long usedSpace;
+        private final Double usage;
         public DiskHardwareInfo(OSFileStore f) {
             this.name = f.getName();
             this.volume = f.getVolume();
@@ -98,16 +98,16 @@ public class Disk {
         public String getUuid() {
             return uuid;
         }
-        public long getFreeSpace() {
+        public Long getFreeSpace() {
             return freeSpace;
         }
-        public long getTotalSpace() {
+        public Long getTotalSpace() {
             return totalSpace;
         }
-        public long getUsedSpace() {
+        public Long getUsedSpace() {
             return usedSpace;
         }
-        public strictfp double getUsage() {
+        public strictfp Double getUsage() {
             return usage;
         }
 
@@ -206,6 +206,7 @@ public class Disk {
         String NEWLINE = io.vincentwinner.toolset.os.OperatingSystem.getStaticSystemInfo().lineSeparator();
         AtomicInteger count = new AtomicInteger();
         StringBuilder sb = new StringBuilder(2048);
+        sb.append("------磁盘信息------").append(NEWLINE);
         getDiskList().forEach(d -> { sb.append("磁盘").append(count.getAndIncrement()).append(":        ").append(d).append(NEWLINE); });
         return sb.toString();
     }

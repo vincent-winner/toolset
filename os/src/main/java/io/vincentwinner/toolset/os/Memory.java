@@ -27,8 +27,8 @@ public class Memory {
     public static final class MemoryHardwareInfo implements Serializable {
         private static final long serialVersionUID = 6013658930508617756L;
         private final String bankLabel;
-        private final long capacity;
-        private final long clockSpeed;
+        private final Long capacity;
+        private final Long clockSpeed;
         private final String manufacturer;
         private final String memoryType;
         private MemoryHardwareInfo(PhysicalMemory physicalMemory) {
@@ -49,14 +49,14 @@ public class Memory {
         /**
          * @return 内存容量
          */
-        public long getCapacity() {
+        public Long getCapacity() {
             return capacity;
         }
 
         /**
          * @return 内存时钟频率
          */
-        public long getClockSpeed() {
+        public Long getClockSpeed() {
             return clockSpeed;
         }
 
@@ -171,6 +171,7 @@ public class Memory {
         List<MemoryHardwareInfo> mems = hardwareInfo();
         AtomicInteger count = new AtomicInteger();
         StringBuilder sb = new StringBuilder(1024);
+        sb.append("------内存信息------").append(NEWLINE);
         sb.append("物理内存大小:   ").append(physicalTotal() >> 20).append(" Mib").append(NEWLINE);
         sb.append("物理内存已用:   ").append(physicalUsed() >> 20).append(" Mib").append(NEWLINE);
         sb.append("物理内存已用:   ").append((float) (physicalUsage() * 100)).append(" %").append(NEWLINE);
