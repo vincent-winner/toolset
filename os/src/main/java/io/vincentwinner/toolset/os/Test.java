@@ -12,6 +12,7 @@ public class Test {
         System.out.println(Disk.getInstance());
         System.out.println(CPU.getInstance());
         System.out.println(GraphicsCard.getInstance());
+        System.out.println(SoundCard.getInstance());
     }
 
 }

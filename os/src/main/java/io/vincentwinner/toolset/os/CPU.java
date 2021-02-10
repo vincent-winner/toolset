@@ -32,7 +32,7 @@ public class CPU {
      * maxFreq            最大频率
      * is64Bit            是否为64位CPU
      */
-    public static final class CPUInfo implements Serializable{
+    public static final class CPUHardWareInfo implements Serializable{
         private static final long serialVersionUID = 9078007820508242638L;
         private final String vendor;
         private final String name;
@@ -44,7 +44,7 @@ public class CPU {
         private final Long vendorFreq;
         private final Long maxFreq;
         private final Boolean is64Bit;
-        public CPUInfo(CentralProcessor c) {
+        public CPUHardWareInfo(CentralProcessor c) {
             CentralProcessor.ProcessorIdentifier i = c.getProcessorIdentifier();
             this.vendor = i.getVendor();
             this.name = i.getName();
@@ -110,8 +110,8 @@ public class CPU {
      * 获取静态 CPU 信息
      * @return 静态CPU信息
      */
-    public CPUInfo getCPUInfo(){
-        return new CPUInfo(((HardwareAbstractionLayer)(Ins$.getInstance().get(2))).getProcessor());
+    public CPUHardWareInfo getCPUInfo(){
+        return new CPUHardWareInfo(((HardwareAbstractionLayer)(Ins$.getInstance().get(2))).getProcessor());
     }
 
     /**
