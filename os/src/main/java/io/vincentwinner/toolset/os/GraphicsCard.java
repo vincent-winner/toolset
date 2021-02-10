@@ -10,13 +10,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 显卡信息
  */
-public class GraphicsCard {
+public final class GraphicsCard {
 
     private GraphicsCard(){}
     private static abstract class GraphicsCardInstance{
         private static final GraphicsCard INSTANCE = new GraphicsCard();
     }
-    public static GraphicsCard getInstance() {
+    protected static GraphicsCard getInstance() {
         return GraphicsCardInstance.INSTANCE;
     }
 

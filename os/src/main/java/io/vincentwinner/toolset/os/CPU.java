@@ -8,13 +8,13 @@ import java.io.Serializable;
 /**
  * CPU 信息
  */
-public class CPU {
+public final class CPU {
 
     private CPU(){}
     private static abstract class CPUInstance{
         private static final CPU CPU = new CPU();
     }
-    public static CPU getInstance() {
+    protected static CPU getInstance() {
         return CPUInstance.CPU;
     }
 

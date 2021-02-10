@@ -12,13 +12,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 文件系统信息
  */
-public class Disk {
+public final class Disk {
 
     private Disk(){}
     private static abstract class DiskInstance{
         private static final Disk DISK = new Disk();
     }
-    public static Disk getInstance() {
+    protected static Disk getInstance() {
         return DiskInstance.DISK;
     }
 

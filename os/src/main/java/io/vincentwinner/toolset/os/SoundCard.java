@@ -10,13 +10,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 声卡信息
  */
-public class SoundCard {
+public final class SoundCard {
 
     private SoundCard(){}
     private static abstract class SoundCardInstance{
         private static final SoundCard INSTANCE = new SoundCard();
     }
-    public static SoundCard getInstance() {
+    protected static SoundCard getInstance() {
         return SoundCardInstance.INSTANCE;
     }
     private final List<oshi.hardware.SoundCard> cards = ((HardwareAbstractionLayer)(Ins$.getInstance().get(2))).getSoundCards();

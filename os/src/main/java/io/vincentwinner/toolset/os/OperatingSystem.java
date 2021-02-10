@@ -1,8 +1,6 @@
 package io.vincentwinner.toolset.os;
 
 import cn.hutool.system.OsInfo;
-import oshi.hardware.ComputerSystem;
-import oshi.hardware.HardwareAbstractionLayer;
 import oshi.software.os.OSProcess;
 import oshi.software.os.OSService;
 
@@ -14,7 +12,7 @@ import java.util.List;
 /**
  * 系统信息
  */
-public class OperatingSystem {
+public final class OperatingSystem {
 
     /**
      * 线程安全单例模式
@@ -28,7 +26,7 @@ public class OperatingSystem {
         private static final StaticSystemInfo staticSystemInfoInstance;
         private static final OperatingSystem thisInstance = new OperatingSystem();
     }
-    public static OperatingSystem getInstance() {
+    protected static OperatingSystem getInstance() {
         return OperatingSystemInstance.thisInstance;
     }
     public static StaticSystemInfo getStaticSystemInfo(){
@@ -36,7 +34,6 @@ public class OperatingSystem {
     }
     private static final OsInfo osInfo = (OsInfo) Ins$.getInstance().get(0);
     private static final oshi.software.os.OperatingSystem os = (oshi.software.os.OperatingSystem) Ins$.getInstance().get(1);
-    private static final ComputerSystem cs = ((HardwareAbstractionLayer) (Ins$.getInstance().get(2))).getComputerSystem();
 
     /**
      * 操作系统类型
@@ -215,37 +212,7 @@ public class OperatingSystem {
         return Arrays.asList(os.getServices());
     }
 
-    /**
-     * 获取当前计算机序列号
-     * @return 当前计算机序列号
-     */
-    public String getSerialNumber(){
-        return cs.getSerialNumber();
-    }
 
-    /**
-     * 获取当前计算机硬件唯一标识
-     * @return 当前计算机硬件唯一标识
-     */
-    public String getHardwareUUID(){
-        return cs.getHardwareUUID();
-    }
-
-    /**
-     * 获取计算机厂商
-     * @return 计算机制造商
-     */
-    public String getManufacturer(){
-        return cs.getManufacturer();
-    }
-
-    /**
-     * 获取计算机星号
-     * @return 计算机星号
-     */
-    public String getComputerModel(){
-        return cs.getModel();
-    }
 
     /**
      * 验证当前系统是否是目标系统
@@ -284,10 +251,6 @@ public class OperatingSystem {
         String NEWLINE = getStaticSystemInfo().lineSeparator();
         StringBuilder sb = new StringBuilder(512);
         sb.append("------系统信息------").append(NEWLINE);
-        sb.append("制造厂商:      ").append(getManufacturer()).append(NEWLINE);
-        sb.append("电脑型号:      ").append(getComputerModel()).append(NEWLINE);
-        sb.append("序列编号:      ").append(getSerialNumber()).append(NEWLINE);
-        sb.append("硬件标识:      ").append(getHardwareUUID()).append(NEWLINE);
         sb.append(getStaticSystemInfo());
         sb.append("运行时间:      ").append(sinceBootTime() / 60 ).append(" 分").append(NEWLINE);
         sb.append("进程数量:      ").append(getProcessesCount()).append(NEWLINE);

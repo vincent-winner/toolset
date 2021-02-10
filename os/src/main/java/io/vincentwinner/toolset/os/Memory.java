@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Memory {
+public final class Memory {
 
     private Memory(){}
     private static abstract class MemoryInstance{
         private static final Memory INSTANCE = new Memory();
     }
-    public static Memory getInstance() {
+    protected static Memory getInstance() {
         return MemoryInstance.INSTANCE;
     }
 
