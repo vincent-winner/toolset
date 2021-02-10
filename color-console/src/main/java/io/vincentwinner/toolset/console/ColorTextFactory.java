@@ -102,7 +102,7 @@ public abstract class ColorTextFactory extends Ansi implements ColorfulConsole, 
      * 下边的例子将前景色设置为青色，背景色为系统默认颜色，并输出了彩色的 123 和 abc
      * {@code <pre>
      *     public void test(){
-     *         FixedColorTextFactory factory = new FixedColorTextFactory(DefaultConsoleColor.CYAN,DefaultConsoleColor.DEFAULT);
+     *         ColorTextFactory factory = new DefaultColorTextFactory(DefaultConsoleColor.CYAN,DefaultConsoleColor.DEFAULT);
      *         System.out.println(factory.colorText(123));// 彩色的123
      *         System.out.println(factory.colorText("abc"));// 彩色的abc
      *         factory.uninstallColor();
