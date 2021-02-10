@@ -33,27 +33,27 @@ public enum StringDomain {
     /**
      * 无空格普通符号
      */
-    COMMON_SYMBOL_WITHOUT_SPACE(new UnaryBaseDomain(33.,47.),new UnaryBaseDomain(58.,64.),new UnaryBaseDomain(91.,96.),new UnaryBaseDomain(123.,126.)),
+    COMMON_SYMBOL_WITHOUT_SPACE(new UnaryBaseDomain(33d,47d),new UnaryBaseDomain(58d,64d),new UnaryBaseDomain(91d,96d),new UnaryBaseDomain(123d,126d)),
 
     /**
      * 普通符号
      */
-    COMMON_SYMBOL(new UnaryBaseDomain(32.,47.),new UnaryBaseDomain(58.,64.),new UnaryBaseDomain(91.,96.),new UnaryBaseDomain(123.,126.)),
+    COMMON_SYMBOL(new UnaryBaseDomain(32d,47d),new UnaryBaseDomain(58d,64d),new UnaryBaseDomain(91d,96d),new UnaryBaseDomain(123d,126d)),
 
     /**
      * 阿拉伯数字
      */
-    NUMBER(new UnaryBaseDomain(48.,57.)),
+    NUMBER(new UnaryBaseDomain(48d,57d)),
 
     /**
      * 大写字母
      */
-    UPPERCASE_LETTER(new UnaryBaseDomain(65.,90.)),
+    UPPERCASE_LETTER(new UnaryBaseDomain(65d,90d)),
 
     /**
      * 小写字母
      */
-    LOWERCASE_LETTER(new UnaryBaseDomain(97.,122.)),
+    LOWERCASE_LETTER(new UnaryBaseDomain(97d,122d)),
 
     /**
      * 大写祖母和小写字母
@@ -98,12 +98,12 @@ public enum StringDomain {
     /**
      * 大写16进制字符
      */
-    UPPERCASE_HEX_CHARS(new UnaryBaseDomain(48.,57.),new UnaryBaseDomain(65.,70.)),
+    UPPERCASE_HEX_CHARS(new UnaryBaseDomain(48d,57d),new UnaryBaseDomain(65d,70d)),
 
     /**
      * 小写16进制字符
      */
-    LOWERCASE_HEX_CHARS(new UnaryBaseDomain(48.,57.),new UnaryBaseDomain(97.,102.)),
+    LOWERCASE_HEX_CHARS(new UnaryBaseDomain(48d,57d),new UnaryBaseDomain(97d,102d)),
 
     /**
      * 10进制字符
@@ -113,12 +113,12 @@ public enum StringDomain {
     /**
      * 8进制字符
      */
-    OCT_CHARS(new UnaryBaseDomain(48.,55.)),
+    OCT_CHARS(new UnaryBaseDomain(48d,55d)),
 
     /**
      * 2进制字符
      */
-    BIN_CHARS(new UnaryBaseDomain(48.,49.)),
+    BIN_CHARS(new UnaryBaseDomain(48d,49d)),
 
     /**
      * 中文字符
