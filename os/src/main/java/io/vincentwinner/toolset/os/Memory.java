@@ -160,7 +160,7 @@ public class Memory {
      */
     public List<MemoryHardwareInfo> hardwareInfo(){
         List<PhysicalMemory> physicalMemoryList = globalMemory.getPhysicalMemory();
-        List<MemoryHardwareInfo> infoList = new ArrayList<>();
+        List<MemoryHardwareInfo> infoList = new ArrayList<>(physicalMemoryList.size());
         physicalMemoryList.forEach(mem -> { infoList.add(new MemoryHardwareInfo(mem)); });
         return infoList;
     }

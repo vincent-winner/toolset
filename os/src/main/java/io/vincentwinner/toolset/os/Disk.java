@@ -196,7 +196,7 @@ public class Disk {
      * @return 磁盘信息列表
      */
     public List<DiskHardwareInfo> getDiskList(){
-        List<DiskHardwareInfo> list = new ArrayList<>(4);
+        List<DiskHardwareInfo> list = new ArrayList<>(osFileStoreList.size());
         osFileStoreList.forEach(d -> { list.add(new DiskHardwareInfo(d)); });
         return list;
     }

@@ -11,6 +11,7 @@ public class Test {
         System.out.println(Memory.getInstance());
         System.out.println(Disk.getInstance());
         System.out.println(CPU.getInstance());
+        System.out.println(GraphicsCard.getInstance());
     }
 
 }

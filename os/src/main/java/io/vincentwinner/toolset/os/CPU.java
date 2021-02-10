@@ -91,7 +91,7 @@ public class CPU {
         @Override
         public String toString() {
             String NEWLINE = OperatingSystem.getStaticSystemInfo().lineSeparator();
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder(256);
             sb.append("处理器制造商:   ").append(vendor).append(NEWLINE);
             sb.append("处理器产品名:   ").append(name).append(NEWLINE);
             sb.append("处理器产品族:   ").append(family).append(NEWLINE);
