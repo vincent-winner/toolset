@@ -51,6 +51,11 @@
 				<version>5.4.1</version>
 			</dependency>
 			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>1.7.5</version>
+			</dependency>
+			<dependency>
 				<groupId>io.vincentwinner.toolset</groupId>
 				<artifactId>domain</artifactId>
 				<version>${domain.version}</version>

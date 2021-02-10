@@ -62,7 +62,7 @@ public class OperatingSystem {
         UNKNOWN;             // 未知操作系统
     }
 
-    private abstract static class StaticSystemInfo {
+    protected abstract static class StaticSystemInfo {
 
         private StaticSystemInfo(){}
 
@@ -140,15 +140,16 @@ public class OperatingSystem {
 
         @Override
         public String toString() {
-            return new StringBuilder(170)
-                    .append("系统名称:      ").append(getStaticSystemInfo().osName()).append(getStaticSystemInfo().lineSeparator())
-                    .append("系统架构:      ").append(getStaticSystemInfo().arch()).append(getStaticSystemInfo().lineSeparator())
-                    .append("系统位数:      ").append(getStaticSystemInfo().bit()).append(getStaticSystemInfo().lineSeparator())
-                    .append("系统版本:      ").append(getStaticSystemInfo().osVersion()).append(getStaticSystemInfo().lineSeparator())
-                    .append("系统用户:      ").append(getStaticSystemInfo().osUserName()).append(getStaticSystemInfo().lineSeparator())
-                    .append("用户目录:      ").append(getStaticSystemInfo().userHome()).append(getStaticSystemInfo().lineSeparator())
-                    .append("路径分隔符:    ").append(getStaticSystemInfo().pathSeparator()).append(getStaticSystemInfo().lineSeparator())
-                    .append("文件目录分隔符: ").append(getStaticSystemInfo().fileSeparator()).append(getStaticSystemInfo().lineSeparator())
+            String NEWLINE = getStaticSystemInfo().lineSeparator();
+            return new StringBuilder(200)
+                    .append("系统名称:      ").append(getStaticSystemInfo().osName()).append(NEWLINE)
+                    .append("系统架构:      ").append(getStaticSystemInfo().arch()).append(NEWLINE)
+                    .append("系统位数:      ").append(getStaticSystemInfo().bit()).append(NEWLINE)
+                    .append("系统版本:      ").append(getStaticSystemInfo().osVersion()).append(NEWLINE)
+                    .append("系统用户:      ").append(getStaticSystemInfo().osUserName()).append(NEWLINE)
+                    .append("用户目录:      ").append(getStaticSystemInfo().userHome()).append(NEWLINE)
+                    .append("路径分隔符:    ").append(getStaticSystemInfo().pathSeparator()).append(NEWLINE)
+                    .append("文件目录分隔符: ").append(getStaticSystemInfo().fileSeparator()).append(NEWLINE)
                     .toString();
         }
     }
@@ -196,6 +197,14 @@ public class OperatingSystem {
     }
 
     /**
+     * 获取当前系统所有线程数量
+     * @return 当先系统线程数量
+     */
+    public int getThreadCount(){
+        return os.getThreadCount();
+    }
+
+    /**
      * 获取当前系统所有服务（守护进程）
      * @return 当前系统所有服务信息
      */
@@ -237,6 +246,13 @@ public class OperatingSystem {
 
     @Override
     public String toString() {
-        return getStaticSystemInfo().toString();
+        String NEWLINE = getStaticSystemInfo().lineSeparator();
+        StringBuilder sb = new StringBuilder(512);
+        sb.append(getStaticSystemInfo());
+        sb.append("运行时间:      ").append(sinceBootTime() / 60 ).append(" 分").append(NEWLINE);
+        sb.append("进程数量:      ").append(getProcessesCount()).append(NEWLINE);
+        sb.append("线程数量:      ").append(getThreadCount()).append(NEWLINE);
+        sb.append("服务数量:      ").append(getServices().size()).append(NEWLINE);
+        return sb.toString();
     }
 }
