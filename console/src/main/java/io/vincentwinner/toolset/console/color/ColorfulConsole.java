@@ -1,4 +1,4 @@
-package io.vincentwinner.toolset.console;
+package io.vincentwinner.toolset.console.color;
 
 import org.fusesource.jansi.AnsiConsole;
 

@@ -22,12 +22,12 @@ public class RandomDouble extends Random<Double>{
     }
 
     /**
-     * @see super#reset()
+     * @see super#next()
      */
     @Override
-    public Double reset() {
+    public Double next() {
         UnaryDomain.UnaryBaseDomain domain =  domains.getDomainList().get(RandomInt.randomInt(0,domains.getDomainList().size() - 1));
-        value = randomDouble(domain.getMin().floor(),domain.getMax().floor());
+        value = randomDouble(domain.getMin().getX(),domain.getMax().getX());
         return value;
     }
 
@@ -37,6 +37,6 @@ public class RandomDouble extends Random<Double>{
      * @param max 最大值
      */
     public static double randomDouble(double min,double max){
-        return Math.random() * (max - min + 1) + min;
+        return Math.random() * (max - min) + min;
     }
 }

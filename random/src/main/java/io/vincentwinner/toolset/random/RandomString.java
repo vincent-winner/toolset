@@ -39,14 +39,14 @@ public class RandomString extends Random<StringBuffer>{
             baseDomains.addAll(Arrays.asList(domain.getSelectedDomains()));
         }
         super.domains = new UnaryDomain(baseDomains);
-        reset();
+        next();
     }
 
     /**
-     * @see super#reset()
+     * @see super#next()
      */
     @Override
-    public StringBuffer reset() {
+    public StringBuffer next() {
         return randomString(stringSize,domains);
     }
 

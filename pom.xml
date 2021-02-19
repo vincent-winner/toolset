@@ -11,7 +11,7 @@
 	<modules>
 		<module>domain</module>
 		<module>random</module>
-		<module>color-console</module>
+		<module>console</module>
 		<module>os</module>
 		<module>crypto</module>
 	</modules>
@@ -31,6 +31,12 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.13.1</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
 				<groupId>org.fusesource.jansi</groupId>
 				<artifactId>jansi</artifactId>
 				<version>2.2.0</version>
@@ -44,6 +50,11 @@
 				<groupId>cn.hutool</groupId>
 				<artifactId>hutool-all</artifactId>
 				<version>5.5.8</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>30.1-jre</version>
 			</dependency>
 			<dependency>
 				<groupId>com.github.oshi</groupId>
@@ -67,7 +78,7 @@
 			</dependency>
 			<dependency>
 				<groupId>io.vincentwinner.toolset</groupId>
-				<artifactId>color-console</artifactId>
+				<artifactId>console</artifactId>
 				<version>${colorconsole.version}</version>
 			</dependency>
 			<dependency>

@@ -22,10 +22,10 @@ public class RandomInt extends Random<Integer>{
     }
 
     /**
-     * @see super#reset()
+     * @see super#next()
      */
     @Override
-    public Integer reset(){
+    public Integer next(){
         UnaryDomain.UnaryBaseDomain domain =  domains.getDomainList().get(randomInt(0,domains.getDomainList().size() - 1));
         value = randomInt((int)(domain.getMin().floor() & 0x7fffffff),(int)(domain.getMax().floor() & 0x7fffffff));
         return value;

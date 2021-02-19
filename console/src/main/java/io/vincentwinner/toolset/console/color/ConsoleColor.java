@@ -1,11 +1,11 @@
-package io.vincentwinner.toolset.console;
+package io.vincentwinner.toolset.console.color;
 
 import org.fusesource.jansi.Ansi;
 
 /**
  * 可以用于控制台背景色和前景色的颜色
  */
-public enum DefaultConsoleColor {
+public enum ConsoleColor {
 
     /**
      * 黑色
@@ -55,7 +55,7 @@ public enum DefaultConsoleColor {
 
     private final Ansi.Color color;
 
-    DefaultConsoleColor(Ansi.Color color){
+    ConsoleColor(Ansi.Color color){
         this.color = color;
     }
 

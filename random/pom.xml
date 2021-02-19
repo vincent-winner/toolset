@@ -17,6 +17,15 @@
 			<groupId>io.vincentwinner.toolset</groupId>
 			<artifactId>domain</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.vincentwinner.toolset</groupId>
+			<artifactId>color-console</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

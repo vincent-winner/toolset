@@ -29,14 +29,14 @@ public abstract class Random<T> implements Serializable {
     }
     public Random(UnaryDomain domains){
         this.domains = domains;
-        reset();
+        next();
     }
 
     /**
      * 在随机域中随机取值，并立刻返回随机到的值
      * @return 随机到的值
      */
-    public abstract T reset();
+    public abstract T next();
 
     /**
      * 返回本类对象中保存的随机值

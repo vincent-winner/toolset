@@ -7,9 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="random" />
+        <module name="console" />
         <module name="os" />
         <module name="domain" />
-        <module name="color-console" />
         <module name="crypto" />
       </profile>
     </annotationProcessing>

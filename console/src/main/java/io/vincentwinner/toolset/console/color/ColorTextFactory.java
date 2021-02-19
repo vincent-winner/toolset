@@ -1,4 +1,4 @@
-package io.vincentwinner.toolset.console;
+package io.vincentwinner.toolset.console.color;
 
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
@@ -9,11 +9,11 @@ public abstract class ColorTextFactory extends Ansi implements ColorfulConsole, 
 
     private static final long serialVersionUID = -3340165443249468186L;
 
-    private DefaultConsoleColor foregroundColor;
-    private DefaultConsoleColor backgroundColor;
+    private ConsoleColor foregroundColor;
+    private ConsoleColor backgroundColor;
     private boolean fgBright;
     private boolean bgBright;
-    private boolean colorful = false;
+    boolean colorful = false;
 
     public ColorTextFactory(){}
 
@@ -23,7 +23,7 @@ public abstract class ColorTextFactory extends Ansi implements ColorfulConsole, 
      * @param fgBright 前景色是否加亮
      * @param bgBright 背景色时候加亮
      */
-    public ColorTextFactory(DefaultConsoleColor foreground, DefaultConsoleColor background, boolean fgBright, boolean bgBright){
+    public ColorTextFactory(ConsoleColor foreground, ConsoleColor background, boolean fgBright, boolean bgBright){
         this.foregroundColor = foreground;
         this.backgroundColor = background;
         this.fgBright = fgBright;
@@ -36,35 +36,35 @@ public abstract class ColorTextFactory extends Ansi implements ColorfulConsole, 
      * @param foreground 文字颜色
      * @param background 背景色
      */
-    public ColorTextFactory(DefaultConsoleColor foreground, DefaultConsoleColor background){
+    public ColorTextFactory(ConsoleColor foreground, ConsoleColor background){
         this(foreground,background,false,false);
     }
 
     /**
      * 获取前景色（文字颜色）
      */
-    public DefaultConsoleColor getForegroundColor() {
+    public ConsoleColor getForegroundColor() {
         return foregroundColor;
     }
 
     /**
      * 获取背景色
      */
-    public DefaultConsoleColor getBackgroundColor() {
+    public ConsoleColor getBackgroundColor() {
         return backgroundColor;
     }
 
     /**
      * 设置文字颜色
      */
-    public void setForegroundColor(DefaultConsoleColor foregroundColor) {
+    public void setForegroundColor(ConsoleColor foregroundColor) {
         this.foregroundColor = foregroundColor;
     }
 
     /**
      * 设置背景色
      */
-    public void setBackgroundColor(DefaultConsoleColor backgroundColor) {
+    public void setBackgroundColor(ConsoleColor backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
 
