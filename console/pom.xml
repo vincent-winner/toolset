@@ -6,6 +6,7 @@
 		<artifactId>toolset-parent</artifactId>
 		<groupId>io.vincentwinner.toolset</groupId>
 		<version>1.0.1</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
@@ -16,6 +17,11 @@
 		<dependency>
 			<groupId>org.fusesource.jansi</groupId>
 			<artifactId>jansi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

@@ -1,9 +1,11 @@
 package io.vincentwinner.toolset.domain;
 
+import io.vincentwinner.toolset.domain.unary.Unary;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static io.vincentwinner.toolset.domain.UnaryDomain.UnaryBaseDomain;
+import static io.vincentwinner.toolset.domain.unary.UnaryDomain.UnaryBaseDomain;
 
 /**
  * COMMON_SYMBOL_WITHOUT_SPACE         无空格普通符号
@@ -28,7 +30,7 @@ import static io.vincentwinner.toolset.domain.UnaryDomain.UnaryBaseDomain;
  * JAPANESE_CHARS_HIRAGANA             日文平假名
  * JAPANESE_CHARS_KATAKANA             日文片假名
  */
-public enum StringDomain {
+public enum StringDomain implements Domain<String> {
 
     /**
      * 无空格普通符号
@@ -163,6 +165,19 @@ public enum StringDomain {
 
     public UnaryBaseDomain[] getSelectedDomains() {
         return selectedDomains;
+    }
+
+    @Override
+    public boolean isInDomain(String element) {
+        char[] charArray = element.toCharArray();
+        for(char c : charArray){
+            for(UnaryBaseDomain domain : getSelectedDomains()){
+                if(domain.isInDomain(new Unary((double)c))){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

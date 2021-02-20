@@ -1,4 +1,4 @@
-package io.vincentwinner.toolset.domain;
+package io.vincentwinner.toolset.domain.unary;
 
 import java.io.Serializable;
 import java.util.Objects;

@@ -1,4 +1,6 @@
-package io.vincentwinner.toolset.domain;
+package io.vincentwinner.toolset.domain.unary;
+
+import io.vincentwinner.toolset.domain.Domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.Objects;
 /**
  * 一元域
  */
-public class UnaryDomain implements Serializable {
+public class UnaryDomain implements Domain<Unary>,Serializable {
 
     private static final long serialVersionUID = 4296168878061789187L;
 
@@ -19,7 +21,7 @@ public class UnaryDomain implements Serializable {
      * min   域最小值
      * span  域跨度
      */
-    public static class UnaryBaseDomain implements Serializable{
+    public static class UnaryBaseDomain implements Domain<Unary>,Serializable{
         private static final long serialVersionUID = 5814067226191064632L;
         private Unary min;
         private Unary max;
@@ -73,6 +75,11 @@ public class UnaryDomain implements Serializable {
         public String toString() {
             return "[" + min + " ~ " + max + "]";
         }
+
+        @Override
+        public boolean isInDomain(Unary element) {
+            return element.getX() >= min.getX() && element.getX() <= max.getX();
+        }
     }
 
     private List<UnaryBaseDomain> domainList;
@@ -124,6 +131,16 @@ public class UnaryDomain implements Serializable {
      */
     private int calcSize(List<UnaryBaseDomain> domains){
         return domains.stream().mapToInt(domain -> (int) domain.getSpan()).sum();
+    }
+
+    @Override
+    public boolean isInDomain(Unary element) {
+        for(UnaryBaseDomain domain : domainList){
+            if(domain.isInDomain(element)){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

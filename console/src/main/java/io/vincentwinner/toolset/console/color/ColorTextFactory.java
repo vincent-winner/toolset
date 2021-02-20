@@ -15,7 +15,13 @@ public abstract class ColorTextFactory extends Ansi implements ColorfulConsole, 
     private boolean bgBright;
     boolean colorful = false;
 
-    public ColorTextFactory(){}
+    public ColorTextFactory(){
+        this.foregroundColor = ConsoleColor.DEFAULT;
+        this.backgroundColor = ConsoleColor.DEFAULT;
+        fgBright = false;
+        bgBright = false;
+        installColor();
+    }
 
     /**
      * @param foreground 文字颜色

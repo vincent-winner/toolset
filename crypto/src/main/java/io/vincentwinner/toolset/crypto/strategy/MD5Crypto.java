@@ -33,7 +33,7 @@ public class MD5Crypto {
             try {
                 MessageDigest digest = MessageDigest.getInstance("md5");
                 byte[] result = digest.digest(data);
-                StringBuffer buffer = new StringBuffer();
+                StringBuilder buffer = new StringBuilder();
                 for (byte b : result) {
                     int number = b & 0xff;
                     String str = Integer.toHexString(number);

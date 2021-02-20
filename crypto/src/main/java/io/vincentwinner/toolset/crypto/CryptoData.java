@@ -1,8 +1,5 @@
 package io.vincentwinner.toolset.crypto;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
-
 import javax.crypto.spec.IvParameterSpec;
 import java.io.Serializable;
 
@@ -13,14 +10,15 @@ public class CryptoData implements Serializable,Cloneable {
 
     private static final long serialVersionUID = 1383436587267060424L;
 
-    @NotNull private byte[] data;// 加密数据
-    @Nullable private byte[] key;// 密钥
-    @Nullable private IvParameterSpec iv;// 初始化向量（长度不为 16bit 则抛出异常）
+    private byte[] data;// 加密数据
+
+    private byte[] key;// 密钥
+    private IvParameterSpec iv;// 初始化向量（长度不为 16bit 则抛出异常）
 
     public CryptoData() {
     }
 
-    public CryptoData(@NotNull byte[] data, @Nullable byte[] key, @Nullable IvParameterSpec iv) {
+    public CryptoData(byte[] data, byte[] key, IvParameterSpec iv) {
         this.data = data;
         this.key = key;
         if(iv != null && iv.getIV().length != 16) throw new IllegalArgumentException("初始化向量长度必须为 16 byte");

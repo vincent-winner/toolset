@@ -6,6 +6,7 @@
 		<artifactId>toolset-parent</artifactId>
 		<groupId>io.vincentwinner.toolset</groupId>
 		<version>1.0.1</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
@@ -21,10 +22,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.vincentwinner.toolset</groupId>
-			<artifactId>color-console</artifactId>
 		</dependency>
 	</dependencies>
 
