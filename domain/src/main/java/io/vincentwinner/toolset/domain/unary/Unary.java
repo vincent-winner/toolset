@@ -20,7 +20,7 @@ public class Unary implements Serializable {
         this.x = x;
     }
 
-    public Double getX() {
+    public strictfp Double getX() {
         return x;
     }
 

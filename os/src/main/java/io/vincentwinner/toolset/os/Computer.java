@@ -66,10 +66,43 @@ public class Computer {
 
     /**
      * 获取操作系统信息
+     * <pre>
+     *     ------系统信息------
+     *     系统名称:      Windows 10
+     *     系统架构:      amd64
+     *     系统位数:      64
+     *     系统版本:      10.0
+     *     系统用户:      xxx
+     *     用户目录:      C:\Users\xxx
+     *     路径分隔符:    ;
+     *     文件目录分隔符: \
+     *     运行时间:      43 分
+     *     进程数量:      264
+     *     线程数量:      3347
+     *     服务数量:      369
+     * </pre>
      * @return 操作系统
      */
     public static OperatingSystem getOperatingSystem(){
         return OperatingSystem.getInstance();
+    }
+
+    /**
+     * 获取静态操作系统信息
+     * <pre>
+     *     系统名称:      Windows 10
+     *     系统架构:      amd64
+     *     系统位数:      64
+     *     系统版本:      10.0
+     *     系统用户:      xxx
+     *     用户目录:      C:\Users\xxx
+     *     路径分隔符:    ;
+     *     文件目录分隔符: \
+     * </pre>
+     * @return 静态操作系统信息
+     */
+    public static OperatingSystem.StaticSystemInfo getStaticSystemInfo(){
+        return OperatingSystem.getStaticSystemInfo();
     }
 
     /**

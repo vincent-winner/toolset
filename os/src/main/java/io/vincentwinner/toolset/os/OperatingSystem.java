@@ -62,7 +62,7 @@ public final class OperatingSystem {
         UNKNOWN;             // 未知操作系统
     }
 
-    protected abstract static class StaticSystemInfo {
+    public abstract static class StaticSystemInfo {
 
         private StaticSystemInfo(){}
 

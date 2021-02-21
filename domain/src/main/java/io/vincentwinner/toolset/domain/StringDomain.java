@@ -171,13 +171,16 @@ public enum StringDomain implements Domain<String> {
     public boolean isInDomain(String element) {
         char[] charArray = element.toCharArray();
         for(char c : charArray){
+            boolean flag = false;
             for(UnaryBaseDomain domain : getSelectedDomains()){
                 if(domain.isInDomain(new Unary((double)c))){
-                    return true;
+                    flag = true;
+                    break;
                 }
             }
+            if(!flag) return false;
         }
-        return false;
+        return true;
     }
 
 }

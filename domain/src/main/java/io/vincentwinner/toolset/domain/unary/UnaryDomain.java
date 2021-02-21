@@ -86,7 +86,7 @@ public class UnaryDomain implements Domain<Unary>,Serializable {
     private int size;
 
     public UnaryDomain(){
-
+        domainList = new ArrayList<>();
     }
 
     public UnaryDomain(UnaryDomain... unaryDomains){
