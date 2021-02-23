@@ -2,6 +2,7 @@ package io.vincentwinner.toolset.ai.faceid.seetaface;
 
 import com.seetaface2.SeetaFace2JNI;
 import com.seetaface2.model.SeetaImageData;
+import com.seetaface2.model.SeetaRect;
 import io.vincentwinner.toolset.os.Computer;
 import io.vincentwinner.toolset.os.OperatingSystem;
 
@@ -9,11 +10,14 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-public class FaceDetectModel {
+/**
+ * 人脸特征模型
+ */
+public final class FaceFeatureModel {
 
     private final SeetaFace2JNI jni;
 
-    private FaceDetectModel(){
+    private FaceFeatureModel(){
         SeetaProperty property = SeetaProperty.getInstance();
         OperatingSystem system = Computer.getOperatingSystem();
         if(system.isTargetSystem(OperatingSystem.SystemType.WINDOWS)){
@@ -30,14 +34,30 @@ public class FaceDetectModel {
     }
 
     private static final class Instance {
-        private static final FaceDetectModel INSTANCE = new FaceDetectModel();
+        private static final FaceFeatureModel INSTANCE = new FaceFeatureModel();
     }
 
-    public static FaceDetectModel getInstance() {
+    protected static FaceFeatureModel getInstance() {
         return Instance.INSTANCE;
     }
 
-    public float compare(SeetaImageData img1, SeetaImageData img2) {
+    /**
+     * 比较两个图片中的人脸相似率
+     * @param img1 图片1
+     * @param img2 图片2
+     * @return 人脸相似率
+     */
+    protected float compare(SeetaImageData img1, SeetaImageData img2) {
         return jni.compare(img1, img2);
     }
+
+    /**
+     * 检测图片中的人脸位置
+     * @param img 被检测的图片
+     * @return 人脸位置
+     */
+    protected SeetaRect[] detect(SeetaImageData img){
+        return jni.detect(img);
+    }
+
 }
