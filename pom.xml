@@ -15,19 +15,23 @@
 		<module>os</module>
 		<module>crypto</module>
 		<module>class-loader</module>
+		<module>ai</module>
 	</modules>
 
 	<properties>
-		<domain.version>1.0.1</domain.version>
-		<random.version>1.0.1</random.version>
-		<colorconsole.version>1.0.1</colorconsole.version>
-		<osmodule.version>1.0.1</osmodule.version>
-		<classloader.version>1.0.1</classloader.version>
 
 		<java.version>1.8</java.version>
 		<maven.compiler.source>8</maven.compiler.source>
 		<maven.compiler.target>8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<domain.version>1.0.1</domain.version>
+		<random.version>1.0.1</random.version>
+		<colorconsole.version>1.0.1</colorconsole.version>
+		<osmodule.version>1.0.1</osmodule.version>
+		<classloader.version>1.0.1</classloader.version>
+		<ai.version>1.0.1</ai.version>
+
 	</properties>
 
 	<dependencyManagement>
@@ -97,6 +101,11 @@
 				<groupId>io.vincentwinner.toolset</groupId>
 				<artifactId>class-loader</artifactId>
 				<version>${classloader.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.vincentwinner.toolset</groupId>
+				<artifactId>ai</artifactId>
+				<version>${ai.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

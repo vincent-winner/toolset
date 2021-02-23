@@ -9,8 +9,9 @@
         <module name="random" />
         <module name="console" />
         <module name="os" />
-        <module name="class-loader" />
         <module name="domain" />
+        <module name="face-id" />
+        <module name="class-loader" />
         <module name="crypto" />
       </profile>
     </annotationProcessing>

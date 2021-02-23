@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>toolset-parent</artifactId>
+		<groupId>io.vincentwinner.toolset</groupId>
+		<version>1.0.1</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>ai</artifactId>
+	<version>1.0.1</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>face-id</module>
+	</modules>
+
+	<properties>
+
+		<java.version>1.8</java.version>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<face.id.version>1.0.1</face.id.version>
+
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>ai.djl</groupId>
+				<artifactId>api</artifactId>
+				<version>0.9.0</version>
+			</dependency>
+			<dependency>
+				<groupId>ai.djl</groupId>
+				<artifactId>repository</artifactId>
+				<version>0.4.1</version>
+			</dependency>
+			<dependency>
+				<groupId>ai.djl.pytorch</groupId>
+				<artifactId>pytorch-native-auto</artifactId>
+				<version>1.7.1</version>
+			</dependency>
+			<dependency>
+				<groupId>ai.djl.pytorch</groupId>
+				<artifactId>pytorch-model-zoo</artifactId>
+				<version>0.9.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.python</groupId>
+				<artifactId>jython-standalone</artifactId>
+				<version>2.7.2</version>
+			</dependency>
+			<dependency>
+				<groupId>io.vincentwinner.toolset</groupId>
+				<artifactId>os</artifactId>
+				<version>${osmodule.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.vincentwinner.toolset</groupId>
+				<artifactId>face-id</artifactId>
+				<version>${face.id.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://maven.aliyun.com/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<url>https://maven.aliyun.com/nexus/content/groups/public</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>
