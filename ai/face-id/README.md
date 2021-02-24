@@ -39,7 +39,10 @@ factor = 0.92
 
 以下所有操作都需要在动态链接库和深度学习模型已经初始化完毕之后运行
 
-动态链接库和深度学习模型请联系作者下载
+动态链接库和深度学习模型下载地址
+压缩格式为7z（分卷压缩），下载全部分卷后解压
+https://gitee.com/vincent-repo/ai-face-id-seeta-lib/raw/master/seetafaceJNI.7z.001
+https://gitee.com/vincent-repo/ai-face-id-seeta-lib/raw/master/seetafaceJNI.7z.002
 
 如果运行时出现下列错误，则应更新 jdk 版本到 1.8.0_u261 之上
 Process finished with exit code -1073740940 (0xC0000374)

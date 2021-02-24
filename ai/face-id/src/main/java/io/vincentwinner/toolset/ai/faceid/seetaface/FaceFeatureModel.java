@@ -24,7 +24,7 @@ public final class FaceFeatureModel {
             List<String> winLib = Arrays.asList("libgcc_s_sjlj-1,libeay32,libquadmath-0,ssleay32,libgfortran-3,libopenblas,holiday,SeetaFaceDetector200,SeetaPointDetector200,SeetaFaceRecognizer200,SeetaFaceCropper200,SeetaFace2JNI".split(","));
             winLib.forEach(lib -> { System.load(new File(property.getLibraryPath(),lib + ".dll").getAbsolutePath()); });
         }else if (system.isTargetSystem(OperatingSystem.SystemType.Linux)){
-            List<String> linuxLib = Arrays.asList("holiday,SeetaFaceDetector200,SeetaPointDetector200,SeetaFaceRecognizer200,SeetaFaceCropper200,SeetaFace2JNI".split(","));
+            List<String> linuxLib = Arrays.asList("libholiday,libSeetaFaceDetector200,libSeetaPointDetector200,libSeetaFaceRecognizer200,libSeetaFaceCropper200,libSeetaFace2JNI".split(","));
             linuxLib.forEach(lib -> { System.load(new File(property.getLibraryPath(),lib + ".so").getAbsolutePath()); });
         }else {
             throw new RuntimeException("模型不支持此系统");
