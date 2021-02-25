@@ -16,6 +16,7 @@
 		<module>crypto</module>
 		<module>class-loader</module>
 		<module>ai</module>
+		<module>image</module>
 	</modules>
 
 	<properties>

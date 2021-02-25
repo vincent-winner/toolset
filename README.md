@@ -11,3 +11,4 @@
 |[random](random/README.md)|为不同情况生成各种各样的随机值|
 |[classloader](class-loader/README.md)|各种功能的类加载器|
 |[ai](ai/README.md)|人工智能模块|
+|[image](image/README.md)|图像处理|
