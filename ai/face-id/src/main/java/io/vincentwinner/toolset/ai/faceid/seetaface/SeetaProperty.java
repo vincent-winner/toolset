@@ -70,7 +70,7 @@ public class SeetaProperty implements Serializable {
         Properties properties = new Properties();
         try {
             if(source == null){
-                properties.load(SeetaProperty.class.getClassLoader().getResourceAsStream("ai-faceid-seeta.common.properties"));
+                properties.load(SeetaProperty.class.getClassLoader().getResourceAsStream("ai-faceid-seeta.properties"));
             }
             properties.load(source);
         } catch (IOException e) {
@@ -125,7 +125,7 @@ public class SeetaProperty implements Serializable {
         if(Instance.INSTANCE == null){
             synchronized (SeetaProperty.class){
                 if(Instance.INSTANCE == null){
-                    Instance.INSTANCE = fromStream(SeetaProperty.class.getClassLoader().getResourceAsStream("ai-faceid-seeta.common.properties"));
+                    Instance.INSTANCE = fromStream(SeetaProperty.class.getClassLoader().getResourceAsStream("ai-faceid-seeta.properties"));
                 }
             }
         }

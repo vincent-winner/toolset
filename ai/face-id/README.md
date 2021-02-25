@@ -39,10 +39,27 @@ factor = 0.92
 
 以下所有操作都需要在动态链接库和深度学习模型已经初始化完毕之后运行
 
-动态链接库和深度学习模型下载地址
-压缩格式为7z（分卷压缩），下载全部分卷后解压
-https://gitee.com/vincent-repo/ai-face-id-seeta-lib/raw/master/seetafaceJNI.7z.001
-https://gitee.com/vincent-repo/ai-face-id-seeta-lib/raw/master/seetafaceJNI.7z.002
+ai-faceid-seeta.common.properties 默认配置文件在jar根目录中，
+将其文件名中的.common去掉后放入类路径中即可使用默认配置
+
+windows运行库下载（放置在ai-faceid-seeta.properties文件中library.path定义的位置）
+https://gitee.com/vincent-repo/ai-face-id-seeta-lib/raw/master/ai-face-id-seeta-lib-win-x64.zip
+
+linux运行库下载（放置在ai-faceid-seeta.properties文件中library.path定义的位置）
+https://gitee.com/vincent-repo/ai-face-id-seeta-lib/raw/master/ai-face-id-seeta-lib-linux-x64.tar.bz2
+linux环境下运行需要安装额外的运行库，下载地址
+http://ftp.gnu.org/gnu/gcc/gcc-5.5.0/gcc-5.5.0.tar.gz
+https://gitee.com/vincent-repo/ai-face-id-seeta-lib/raw/master/openblas-0.2.20.tar.gz
+https://gitee.com/vincent-repo/ai-face-id-seeta-lib/raw/master/openssl-1.0.0.tar.gz
+https://gitee.com/vincent-repo/ai-face-id-seeta-lib/raw/master/protobuf-2.6.0.tar.gz
+将上述四个压缩包下载好之后放入同一个文件夹，
+将工程目录中的build-library-linux.sh复制到此处编译运行即可
+
+深度学习模型下载（放置在ai-faceid-seeta.properties文件中model.path定义的位置）
+模型使用tar分卷压缩（tar cf - bindata |split -b 70m - bindata.tar.）
+解压请使用命令（cat bindata.tar.* | tar -x）
+https://gitee.com/vincent-repo/ai-face-id-seeta-lib/raw/master/bindata.tar.aa
+https://gitee.com/vincent-repo/ai-face-id-seeta-lib/raw/master/bindata.tar.ab
 
 如果运行时出现下列错误，则应更新 jdk 版本到 1.8.0_u261 之上
 Process finished with exit code -1073740940 (0xC0000374)
