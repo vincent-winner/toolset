@@ -20,7 +20,7 @@ cd ../..
 
 # 编译、构建并安装 OpenBLAS
 ln -s /usr/lib64/libgfortran.so.3.0.0 /usr/lib64/libgfortran.so
-tar -zxvf openblas-v0.2.20.tar.gz
+tar -zxvf openblas-0.2.20.tar.gz
 cd OpenBLAS-0.2.20/
 make FC=gfortran
 make PREFIX=/usr/local/openblas install

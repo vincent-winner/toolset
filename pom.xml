@@ -32,6 +32,24 @@
 		<osmodule.version>1.0.1</osmodule.version>
 		<classloader.version>1.0.1</classloader.version>
 		<ai.version>1.0.1</ai.version>
+		<image.version>1.0.1</image.version>
+
+		<javacpp.platform.android-arm>android-arm</javacpp.platform.android-arm>
+		<javacpp.platform.android-arm64>android-arm64</javacpp.platform.android-arm64>
+		<javacpp.platform.android-x86>android-x86</javacpp.platform.android-x86>
+		<javacpp.platform.android-x86_64>android-x86_64</javacpp.platform.android-x86_64>
+		<javacpp.platform.ios-arm>ios-arm</javacpp.platform.ios-arm>
+		<javacpp.platform.ios-arm64>ios-arm64</javacpp.platform.ios-arm64>
+		<javacpp.platform.ios-x86>ios-x86</javacpp.platform.ios-x86>
+		<javacpp.platform.ios-x86_64>ios-x86_64</javacpp.platform.ios-x86_64>
+		<javacpp.platform.linux-armhf>linux-armhf</javacpp.platform.linux-armhf>
+		<javacpp.platform.linux-arm64>linux-arm64</javacpp.platform.linux-arm64>
+		<javacpp.platform.linux-ppc64le>linux-ppc64le</javacpp.platform.linux-ppc64le>
+		<javacpp.platform.linux-x86>linux-x86</javacpp.platform.linux-x86>
+		<javacpp.platform.linux-x86_64>linux-x86_64</javacpp.platform.linux-x86_64>
+		<javacpp.platform.macosx-x86_64>macosx-x86_64</javacpp.platform.macosx-x86_64>
+		<javacpp.platform.windows-x86>windows-x86</javacpp.platform.windows-x86>
+		<javacpp.platform.windows-x86_64>windows-x86_64</javacpp.platform.windows-x86_64>
 
 	</properties>
 
@@ -74,6 +92,36 @@
 				<version>5.4.1</version>
 			</dependency>
 			<dependency>
+				<groupId>org.bytedeco</groupId>
+				<artifactId>javacv-platform</artifactId>
+				<version>1.5.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bytedeco</groupId>
+				<artifactId>javacv</artifactId>
+				<version>1.5.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bytedeco</groupId>
+				<artifactId>javacpp</artifactId>
+				<version>1.5.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bytedeco</groupId>
+				<artifactId>opencv</artifactId>
+				<version>4.4.0-1.5.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bytedeco</groupId>
+				<artifactId>openblas</artifactId>
+				<version>0.3.10-1.5.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bytedeco</groupId>
+				<artifactId>ffmpeg</artifactId>
+				<version>4.3.1-1.5.4</version>
+			</dependency>
+			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-simple</artifactId>
 				<version>1.7.5</version>
@@ -107,6 +155,11 @@
 				<groupId>io.vincentwinner.toolset</groupId>
 				<artifactId>ai</artifactId>
 				<version>${ai.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.vincentwinner.toolset</groupId>
+				<artifactId>image</artifactId>
+				<version>${image.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
