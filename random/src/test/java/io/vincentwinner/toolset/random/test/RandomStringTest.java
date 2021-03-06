@@ -1,6 +1,6 @@
 package io.vincentwinner.toolset.random.test;
 
-import io.vincentwinner.toolset.domain.StringDomain;
+import io.vincentwinner.toolset.core.domain.StringDomain;
 import io.vincentwinner.toolset.random.RandomString;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;

@@ -1,6 +1,6 @@
 package io.vincentwinner.toolset.random;
 
-import io.vincentwinner.toolset.domain.unary.UnaryDomain;
+import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
 
 /**
  * 随机整数

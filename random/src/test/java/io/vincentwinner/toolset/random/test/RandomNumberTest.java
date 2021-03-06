@@ -1,6 +1,6 @@
 package io.vincentwinner.toolset.random.test;
 
-import io.vincentwinner.toolset.domain.unary.UnaryDomain;
+import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
 import io.vincentwinner.toolset.random.Random;
 import io.vincentwinner.toolset.random.RandomDouble;
 import io.vincentwinner.toolset.random.RandomInt;

@@ -23,7 +23,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>io.vincentwinner.toolset</groupId>
-			<artifactId>domain</artifactId>
+			<artifactId>core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

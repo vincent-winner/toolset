@@ -1,8 +1,8 @@
-package io.vincentwinner.toolset.domain.test;
+package test;
 
-import io.vincentwinner.toolset.domain.StringDomain;
-import io.vincentwinner.toolset.domain.unary.Unary;
-import io.vincentwinner.toolset.domain.unary.UnaryDomain;
+import io.vincentwinner.toolset.core.domain.StringDomain;
+import io.vincentwinner.toolset.core.domain.unary.Unary;
+import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

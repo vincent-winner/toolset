@@ -9,14 +9,16 @@
         <module name="random" />
         <module name="console" />
         <module name="image" />
+        <module name="core" />
         <module name="os" />
-        <module name="domain" />
         <module name="face-id" />
         <module name="class-loader" />
+        <module name="toolset-all" />
         <module name="crypto" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="domain" target="8" />
       <module name="untitled" target="8" />
     </bytecodeTargetLevel>
   </component>

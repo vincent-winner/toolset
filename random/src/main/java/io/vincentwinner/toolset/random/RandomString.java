@@ -1,7 +1,7 @@
 package io.vincentwinner.toolset.random;
 
-import io.vincentwinner.toolset.domain.StringDomain;
-import io.vincentwinner.toolset.domain.unary.UnaryDomain;
+import io.vincentwinner.toolset.core.domain.StringDomain;
+import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
 
 import java.util.ArrayList;
 import java.util.Arrays;

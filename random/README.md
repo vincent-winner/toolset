@@ -41,7 +41,7 @@ public class RandomTest {
 #### <span id="double">2.在指定范围内生成随机双精度浮点数（Double）</span>
 
 ```java
-import io.vincentwinner.toolset.domain.unary.UnaryDomain;
+import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
 import io.vincentwinner.toolset.random.*;
 
 public class RandomDoubleTest {
@@ -51,8 +51,8 @@ public class RandomDoubleTest {
      */
     public static void main(String[] args) {
         Random<Double> random = new RandomDouble(
-                new UnaryDomain(1d,4d),
-                new UnaryDomain(16d,28d));
+                new UnaryDomain(1d, 4d),
+                new UnaryDomain(16d, 28d));
         for (int i = 0; i < 10; i++) {
             System.out.println(random.next());
         }
@@ -60,8 +60,9 @@ public class RandomDoubleTest {
 }
 ```
 #### <span id="int">3.在指定范围内生成整数（Integer）</span>
+
 ```java
-import io.vincentwinner.toolset.domain.unary.UnaryDomain;
+import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
 import io.vincentwinner.toolset.random.*;
 
 public class RandomIntTest {
@@ -71,8 +72,8 @@ public class RandomIntTest {
      */
     public static void main(String[] args) {
         Random<Integer> random = new RandomInt(
-                new UnaryDomain(1d,5d),
-                new UnaryDomain(2d,8d));
+                new UnaryDomain(1d, 5d),
+                new UnaryDomain(2d, 8d));
         for (int i = 0; i < 10; i++) {
             System.out.println(random.next());
         }
@@ -91,8 +92,8 @@ public class RandomIntTest {
 #### <span id="string">5.在指定范围内生成字符串（String）</span>
 
 ```java
-import io.vincentwinner.toolset.domain.StringDomain;
-import io.vincentwinner.toolset.domain.unary.UnaryDomain;
+import io.vincentwinner.toolset.core.domain.StringDomain;
+import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
 import io.vincentwinner.toolset.random.*;
 
 public class RandomStringTest {

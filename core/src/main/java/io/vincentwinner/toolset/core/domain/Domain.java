@@ -1,4 +1,4 @@
-package io.vincentwinner.toolset.domain;
+package io.vincentwinner.toolset.core.domain;
 
 public interface Domain<T> {
 

@@ -1,6 +1,6 @@
-package io.vincentwinner.toolset.domain.unary;
+package io.vincentwinner.toolset.core.domain.unary;
 
-import io.vincentwinner.toolset.domain.Domain;
+import io.vincentwinner.toolset.core.domain.Domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,11 +1,11 @@
-package io.vincentwinner.toolset.domain;
+package io.vincentwinner.toolset.core.domain;
 
-import io.vincentwinner.toolset.domain.unary.Unary;
+import io.vincentwinner.toolset.core.domain.unary.Unary;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static io.vincentwinner.toolset.domain.unary.UnaryDomain.UnaryBaseDomain;
+import static io.vincentwinner.toolset.core.domain.unary.UnaryDomain.UnaryBaseDomain;
 
 /**
  * COMMON_SYMBOL_WITHOUT_SPACE         无空格普通符号
