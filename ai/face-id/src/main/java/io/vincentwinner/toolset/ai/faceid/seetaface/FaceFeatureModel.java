@@ -2,6 +2,7 @@ package io.vincentwinner.toolset.ai.faceid.seetaface;
 
 import com.seetaface2.SeetaFace2JNI;
 import com.seetaface2.model.SeetaImageData;
+import com.seetaface2.model.SeetaPointF;
 import com.seetaface2.model.SeetaRect;
 import io.vincentwinner.toolset.os.Computer;
 import io.vincentwinner.toolset.os.OperatingSystem;
@@ -58,6 +59,24 @@ public final class FaceFeatureModel {
      */
     protected SeetaRect[] detect(SeetaImageData img){
         return jni.detect(img);
+    }
+
+    /**
+     * 检测人脸五个关键点
+     * 双眼 （2）
+     * 鼻子 （1）
+     * 嘴角 （2）
+     * 下边的图是人脸
+     * ╭------------╮   ╭------------╮
+     * │   ○    ○  │   │   1    2   ┃
+     * │      |     │   │     3      ┃
+     * │   ▁▁▁▁▁▁   │   │   4    5   ┃
+     * ╰------------╯   ╰------------╯
+     * @param img 图片
+     * @return 关键点 x5
+     */
+    protected SeetaPointF[] detectPoints(SeetaImageData img){
+        return jni.detect(img,detect(img));
     }
 
 }

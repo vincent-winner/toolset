@@ -1,14 +1,19 @@
 package io.vincentwinner.toolset.ai.faceid.seetaface;
 
 import com.seetaface2.model.SeetaImageData;
+import com.seetaface2.model.SeetaPointF;
 import com.seetaface2.model.SeetaRect;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.ComponentSampleModel;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * 使用本类方法对图片进行 人脸识别 和 人脸比较
@@ -45,12 +50,8 @@ public class FaceHandleService {
 
         @Override
         public FaceCompareResult call() throws Exception {
-            BufferedImage pic1Buf = ImageIO.read(pic1);
-            BufferedImage pic2Buf = ImageIO.read(pic2);
-            SeetaImageData pic1 = new SeetaImageData(pic1Buf.getWidth(),pic1Buf.getHeight());
-            pic1.data = getMatrixBGR(pic1Buf);
-            SeetaImageData pic2 = new SeetaImageData(pic2Buf.getWidth(),pic2Buf.getHeight());
-            pic2.data = getMatrixBGR(pic2Buf);
+            SeetaImageData pic1 = toImageData(this.pic1);
+            SeetaImageData pic2 = toImageData(this.pic2);
             float rate = compare(pic1,pic2);
             return new FaceCompareResult(rate / property.getFactor().floatValue(),rate >= property.getSimilarRate());
         }
@@ -70,10 +71,26 @@ public class FaceHandleService {
 
         @Override
         public SeetaRect[] call() throws Exception {
-            BufferedImage picBuf = ImageIO.read(pic);
-            SeetaImageData pic = new SeetaImageData(picBuf.getWidth(), picBuf.getHeight());
-            pic.data = getMatrixBGR(picBuf);
+            SeetaImageData pic = toImageData(this.pic);
             return detect(pic);
+        }
+    }
+
+    /**
+     * 人脸关键点检测任务
+     */
+    private static final class FaceDetectPointTask implements Callable<SeetaPointF[]>{
+
+        private final InputStream pic;
+
+        FaceDetectPointTask(InputStream pic){
+            this.pic = pic;
+        }
+
+        @Override
+        public SeetaPointF[] call() throws Exception {
+            SeetaImageData pic = toImageData(this.pic);
+            return detectPoints(pic);
         }
     }
 
@@ -90,10 +107,28 @@ public class FaceHandleService {
     /**
      * 提交人脸检测任务
      * @param pic 图片
-     * @return 人脸位置
+     * @return 人脸位置（矩形区域）
      */
     public Future<SeetaRect[]> submitDetect(InputStream pic) {
         return executorService.submit(new FaceDetectTask(pic));
+    }
+
+    /**
+     * 检测人脸五个关键点
+     * 双眼 （2）
+     * 鼻子 （1）
+     * 嘴角 （2）
+     * 下边的图是人脸
+     * ╭------------╮   ╭------------╮
+     * │   ○    ○  │   │   1    2   ┃
+     * │      |     │   │     3      ┃
+     * │   ▁▁▁▁▁▁   │   │   4    5   ┃
+     * ╰------------╯   ╰------------╯
+     * @param pic 图片输入流
+     * @return 关键点 x5
+     */
+    public Future<SeetaPointF[]> submitDetectPoint(InputStream pic){
+        return executorService.submit(new FaceDetectPointTask(pic));
     }
 
     /**
@@ -103,12 +138,30 @@ public class FaceHandleService {
         executorService.shutdown();
     }
 
+    /**
+     * 比较两张人脸的相似度
+     * @param pic1 图片1
+     * @param pic2 图片2
+     * @return 相似度（负数为未检测到人脸）
+     */
     private static strictfp synchronized float compare(SeetaImageData pic1, SeetaImageData pic2){
         return model.compare(pic1,pic2);
     }
 
+    /**
+     * 检测图片中的人脸位置
+     * @return 关键点集合
+     */
     private static synchronized SeetaRect[] detect(SeetaImageData pic){
         return model.detect(pic);
+    }
+
+    /**
+     * 检测人脸五个关键点
+     * @return 关键点集合
+     */
+    private static synchronized SeetaPointF[] detectPoints(SeetaImageData pic){
+        return model.detectPoints(pic);
     }
 
     /**
@@ -163,6 +216,22 @@ public class FaceHandleService {
             }
         }
         return false;
+    }
+
+    /**
+     * 将图片转换为目标图像
+     * @param inputStream 图片输入流
+     * @return 目标图像
+     */
+    private static SeetaImageData toImageData(InputStream inputStream){
+        try {
+            BufferedImage imageBuf = ImageIO.read(inputStream);
+            SeetaImageData image = new SeetaImageData(imageBuf.getWidth(),imageBuf.getHeight());
+            image.data = getMatrixBGR(imageBuf);
+            return image;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
