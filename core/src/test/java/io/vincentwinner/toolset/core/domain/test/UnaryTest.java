@@ -1,4 +1,4 @@
-package test;
+package io.vincentwinner.toolset.core.domain.test;
 
 import io.vincentwinner.toolset.core.domain.StringDomain;
 import io.vincentwinner.toolset.core.domain.unary.Unary;
