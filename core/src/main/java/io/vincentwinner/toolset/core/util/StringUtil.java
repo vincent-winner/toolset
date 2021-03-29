@@ -26,4 +26,40 @@ public class StringUtil {
         return string == null ? defaultValue : string;
     }
 
+    /**
+     * 判断字符串是否为空
+     * @param string 字符串
+     * @return 字符串是否为空
+     */
+    public static boolean isEmpty(CharSequence string){
+        return string == null || string.length() == 0;
+    }
+
+    /**
+     * 判断字符串是否全部为空白字符
+     * 当字符串为空或null时依然算作空白字符串
+     * <pre>
+     *      ""          true
+     *      " \t\r\n"   true
+     *      null        true
+     *      " "         true
+     *      "  1   "    false
+     * </pre>
+     * @param string 需要判断的字符串
+     * @return 字符串是否全部为空白字符
+     */
+    public static boolean isBlank(CharSequence string){
+        if(isEmpty(string)) return true;
+        for(int i = 0 ; i < string.length() ; i++){
+            char c = string.charAt(i);
+            if(!Character.isWhitespace(c)
+                    && !Character.isSpaceChar(c)
+                    && c != '\ufeff'
+                    && c != '\u202a'){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

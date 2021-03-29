@@ -17,6 +17,7 @@ import static io.vincentwinner.toolset.core.domain.unary.UnaryDomain.UnaryBaseDo
  * UPPERCASE_LETTER_NUMBER             大写字母和数字
  * LOWERCASE_LETTER_NUMBER             小写字母和数字
  * LETTER_NUMBER                       字母和数字（字母包含大写和小写）
+ * ASCII_CHARS                         ASCII字符
  * ASCII_PRINT_CHARS                   ASCII打印字符（字母、数字、特殊字符、空格）
  * ASCII_PRINT_CHARS_WITHOUT_SPACE     无空格ASCII打印字符（字母、数字、特殊字符）
  * UPPERCASE_ASCII_PRINT_CHARS         大写ASCII打印字符（大写字母、数字、特殊字符）
@@ -76,6 +77,11 @@ public enum StringDomain implements Domain<String> {
      * 字母和数字
      */
     LETTER_NUMBER(NUMBER, LETTER),
+
+    /**
+     * ASCII字符
+     */
+    ASCII_CHARS(new UnaryBaseDomain(0d,128d)),
 
     /**
      * ASCII打印字符（字母、数字、特殊字符、空格）

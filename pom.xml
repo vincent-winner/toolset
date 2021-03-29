@@ -17,7 +17,6 @@
 		<module>ai</module>
 		<module>image</module>
 		<module>core</module>
-		<module>toolset-all</module>
 	</modules>
 
 	<properties>
@@ -27,14 +26,15 @@
 		<maven.compiler.target>8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+		<project.platform>windows-x86_64</project.platform>
+
 		<random.version>1.0.1</random.version>
 		<console.version>1.0.1</console.version>
 		<osmodule.version>1.0.1</osmodule.version>
 		<classloader.version>1.0.1</classloader.version>
 		<ai.version>1.0.1</ai.version>
-		<image.version>1.0.1</image.version>
+		<image.version>1.0.1-${project.platform}</image.version>
 		<core.version>1.0.1</core.version>
-		<all.version>1.0.1</all.version>
 
 	</properties>
 
@@ -98,6 +98,21 @@
 			</dependency>
 			<dependency>
 				<groupId>org.bytedeco</groupId>
+				<artifactId>cuda-platform-redist</artifactId>
+				<version>11.2-8.1-1.5.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bytedeco</groupId>
+				<artifactId>cuda</artifactId>
+				<version>11.2-8.1-1.5.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bytedeco</groupId>
+				<artifactId>cuda-platform</artifactId>
+				<version>11.2-8.1-1.5.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bytedeco</groupId>
 				<artifactId>openblas</artifactId>
 				<version>0.3.10-1.5.4</version>
 			</dependency>
@@ -105,6 +120,11 @@
 				<groupId>org.bytedeco</groupId>
 				<artifactId>ffmpeg</artifactId>
 				<version>4.3.1-1.5.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>core</artifactId>
+				<version>3.4.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -147,9 +167,9 @@
 				<version>${core.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>io.vincentwinner.toolset</groupId>
-				<artifactId>toolset-all</artifactId>
-				<version>${all.version}</version>
+				<groupId>com.jolira</groupId>
+				<artifactId>onejar-maven-plugin</artifactId>
+				<version>1.4.4</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

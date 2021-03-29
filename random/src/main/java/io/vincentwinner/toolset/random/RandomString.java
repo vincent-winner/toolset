@@ -12,7 +12,7 @@ import java.util.List;
  * 默认生成字符串域：   大写字母 + 小写字母 + 数字
  * 默认字符串长度：     8
  */
-public class RandomString extends Random<StringBuffer>{
+public class RandomString extends Random<String>{
 
     private static final long serialVersionUID = -8517171265288367526L;
 
@@ -46,7 +46,7 @@ public class RandomString extends Random<StringBuffer>{
      * @see super#next()
      */
     @Override
-    public StringBuffer next() {
+    public String next() {
         return randomString(stringSize,domains);
     }
 
@@ -77,8 +77,8 @@ public class RandomString extends Random<StringBuffer>{
      * @param domains 字符串随机范围
      * @return 随机生成的字符串
      */
-    public static StringBuffer randomString(int size, UnaryDomain... domains){
-        StringBuffer sb = new StringBuffer(size);
+    public static String randomString(int size, UnaryDomain... domains){
+        StringBuilder sb = new StringBuilder(size);
         if(domains == null || domains.length == 0){
             domains = new UnaryDomain[]{
                     new UnaryDomain(new UnaryDomain.UnaryBaseDomain(48.,57.),
@@ -91,7 +91,7 @@ public class RandomString extends Random<StringBuffer>{
             UnaryDomain.UnaryBaseDomain domain = unaryDomain.getDomainList().get(RandomInt.randomInt(0, unaryDomain.getDomainList().size() - 1));
             sb.append((char)RandomLong.randomLong(domain.getMin().floor(),domain.getMax().floor()));
         }
-        return sb;
+        return sb.toString();
     }
 
     /**
@@ -100,8 +100,8 @@ public class RandomString extends Random<StringBuffer>{
      * @param domains 字符串随机范围
      * @return 随机生成的字符串
      */
-    public static StringBuffer randomString(int size, StringDomain... domains){
-        StringBuffer sb = new StringBuffer(size);
+    public static String randomString(int size, StringDomain... domains){
+        StringBuilder sb = new StringBuilder(size);
         if(domains == null || domains.length == 0){
             domains = new StringDomain[]{StringDomain.LETTER_NUMBER};
         }
@@ -110,7 +110,7 @@ public class RandomString extends Random<StringBuffer>{
             UnaryDomain.UnaryBaseDomain domain = unaryDomains[RandomInt.randomInt(0,unaryDomains.length - 1)];
             sb.append((char)RandomLong.randomLong(domain.getMin().floor(),domain.getMax().floor()));
         }
-        return sb;
+        return sb.toString();
     }
 
 }

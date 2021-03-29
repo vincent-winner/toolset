@@ -10,7 +10,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>image</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.1-${project.platform}</version>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -19,5 +19,38 @@
 		<maven.compiler.target>8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>opencv</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>opencv</artifactId>
+			<version>4.4.0-1.5.4</version>
+			<classifier>${project.platform}</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>openblas</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>openblas</artifactId>
+			<version>0.3.10-1.5.4</version>
+			<classifier>${project.platform}</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>javacpp</artifactId>
+			<version>1.5.4</version>
+			<classifier>${project.platform}</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>javacv</artifactId>
+		</dependency>
+	</dependencies>
 
 </project>

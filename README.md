@@ -12,4 +12,18 @@
 |[classloader](class-loader/README.md)|各种功能的类加载器|
 |[ai](ai/README.md)|人工智能模块|
 |[image](image/README.md)|图像处理|
-|[toolset-all](toolset-all/README.md)|包含全部工具|
+
+注意：
+- 修改pom.xml中的 project.platform 选项来指定编译平台，目前 project.platform 选项只会影响到 image 模块，需要此选项的原因是 Image 模块导入了opencv 的动态链接库，而动态链接库不跨平台
+```xml
+<!--使用以下方式导入对应平台的image模块，project.platform的值如下-->
+<!--
+    windows-x86_64
+    linux-x86_64
+-->
+<dependency>
+    <groupId>io.vincentwinner.toolset</groupId>
+    <artifactId>image</artifactId>
+    <version>1.0.1-${project.platform}</version>
+</dependency>
+```
