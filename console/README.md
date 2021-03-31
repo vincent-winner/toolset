@@ -134,9 +134,9 @@ public class Test {
 #### <span id="color">4.自定义控制台文字颜色</span>
 
 ```java
-import io.vincentwinner.toolset.console.color.ColorTextFactory;
+import io.vincentwinner.toolset.console.color.factory.ColorTextFactory;
 import io.vincentwinner.toolset.console.color.ConsoleColor;
-import io.vincentwinner.toolset.console.color.IntelliJIDEAColorTextFactory;
+import io.vincentwinner.toolset.console.color.factory.IntelliJIDEAColorTextFactory;
 
 public class Test {
     public static void main(String[] args) {
@@ -151,17 +151,17 @@ public class Test {
 
         //输出黄色的 123
         System.out.println(printer.colorText("123"));
-        
+
         //将背景色设置为蓝色，由于之前已经将字体设置为黄色，打印字体的颜色是黄色字蓝色背景
         printer.setBackgroundColor(ConsoleColor.BLUE);
         //输出黄色字体蓝色背景的456
         System.out.println(printer.colorText(456));
-        
+
         //卸载颜色
         printer.uninstallColor();
         //此时输出将是系统控制台最开始的默认颜色（未更改过是黑底白字）
         System.out.println(printer.colorText(789));
-        
+
         //继续输出彩色字体，由于未更改过颜色，输出的 000 将依然是黄字蓝底
         printer.installColor();
         System.out.println(printer.colorText("000"));

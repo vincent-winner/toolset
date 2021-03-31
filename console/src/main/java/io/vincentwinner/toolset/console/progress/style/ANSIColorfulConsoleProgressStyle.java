@@ -1,8 +1,8 @@
 package io.vincentwinner.toolset.console.progress.style;
 
-import io.vincentwinner.toolset.console.color.ColorTextFactory;
+import io.vincentwinner.toolset.console.color.factory.ColorTextFactory;
 import io.vincentwinner.toolset.console.color.ConsoleColor;
-import io.vincentwinner.toolset.console.color.DefaultColorTextFactory;
+import io.vincentwinner.toolset.console.color.factory.DefaultColorTextFactory;
 
 /**
  * 普通彩色进度条样式

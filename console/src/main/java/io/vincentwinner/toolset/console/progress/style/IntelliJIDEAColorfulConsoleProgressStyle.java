@@ -1,6 +1,6 @@
 package io.vincentwinner.toolset.console.progress.style;
 
-import io.vincentwinner.toolset.console.color.IntelliJIDEAColorTextFactory;
+import io.vincentwinner.toolset.console.color.factory.IntelliJIDEAColorTextFactory;
 
 /**
  * IntelliJ IDEA 彩色进度条样式

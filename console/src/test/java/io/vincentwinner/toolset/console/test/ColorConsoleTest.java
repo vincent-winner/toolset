@@ -1,9 +1,9 @@
 package io.vincentwinner.toolset.console.test;
 
-import io.vincentwinner.toolset.console.color.ColorTextFactory;
+import io.vincentwinner.toolset.console.color.factory.ColorTextFactory;
 import io.vincentwinner.toolset.console.color.ConsoleColor;
-import io.vincentwinner.toolset.console.color.DefaultColorTextFactory;
-import io.vincentwinner.toolset.console.color.IntelliJIDEAColorTextFactory;
+import io.vincentwinner.toolset.console.color.factory.DefaultColorTextFactory;
+import io.vincentwinner.toolset.console.color.factory.IntelliJIDEAColorTextFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
