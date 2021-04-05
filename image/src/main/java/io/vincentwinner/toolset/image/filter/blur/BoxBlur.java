@@ -1,6 +1,7 @@
 package io.vincentwinner.toolset.image.filter.blur;
 
 import io.vincentwinner.toolset.image.DDepth;
+import io.vincentwinner.toolset.image.util.ConvolutionKernelCheckUtil;
 import io.vincentwinner.toolset.image.util.MatUtil;
 import org.bytedeco.opencv.global.opencv_imgproc;
 import org.bytedeco.opencv.opencv_core.Mat;
@@ -23,6 +24,7 @@ public class BoxBlur {
      * @return 处理后的图像矩阵信息
      */
     public static Mat boxBlur(InputStream inputStream,int kernelWidth,int kernelHeight){
+        ConvolutionKernelCheckUtil.checkBoxKernel(kernelWidth,kernelHeight);
         Mat src = MatUtil.inputStreamToMat(inputStream,4096);
         return boxConvolution(src,ORIGINAL,kernelWidth,kernelHeight);
     }
@@ -35,6 +37,7 @@ public class BoxBlur {
      * @return 处理后的图像矩阵信息
      */
     public static Mat boxBlur(String filename,int kernelWidth,int kernelHeight){
+        ConvolutionKernelCheckUtil.checkBoxKernel(kernelWidth,kernelHeight);
         Mat src = MatUtil.readFileToMat(filename);
         return boxConvolution(src, ORIGINAL,kernelWidth,kernelHeight);
     }

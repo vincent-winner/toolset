@@ -2,6 +2,8 @@ package io.vincentwinner.toolset.image.util;
 
 import io.vincentwinner.toolset.image.exception.ConvolutionIllegalArgumentException;
 
+import java.util.function.Predicate;
+
 /**
  * 卷积核参数检查
  * 本类方法只对相应的图像处理方法起作用
@@ -14,10 +16,27 @@ public class ConvolutionKernelCheckUtil {
      * @param kernelArgs 参数
      * @return 参数是否含有小于等于0的
      */
-    private static boolean notGreaterThanZero(int... kernelArgs){
-        for (int kernelArg : kernelArgs)
-            if (kernelArg <= 0) return true;
-        return false;
+    private static boolean greaterThanZero(int... kernelArgs){
+        return testKernel(i -> i > 0,kernelArgs);
+    }
+
+    private static boolean greaterThanZeroAndIsOdd(int... kernelArgs){
+        return testKernel(i -> i > 0 && ((i & 1) == 1),kernelArgs);
+    }
+
+    private static boolean greaterThanZeroAndIsOddWithMaxRange(final int maxRange,int... kernelArgs){
+        return testKernel(i -> i > 0 && ((i & 1) == 1) && i <= maxRange,kernelArgs);
+    }
+
+    private static boolean greaterThanZeroWithMaxRange(final int maxRange,int... kernelArgs){
+        return testKernel(i -> i > 0 && i <= maxRange,kernelArgs);
+    }
+
+    private static boolean testKernel(Predicate<Integer> predicate,int... kernelArgs){
+        for(int kernelArg : kernelArgs){
+            if(!predicate.test(kernelArg)) return false;
+        }
+        return true;
     }
 
     /**
@@ -29,8 +48,7 @@ public class ConvolutionKernelCheckUtil {
      * @throws ConvolutionIllegalArgumentException 当核心参数不符合规范时抛出此异常
      */
     public static void checkGaussianKernel(int kernelWidth,int kernelHeight){
-        if( ((kernelWidth & 1) == 0) || ((kernelHeight & 1) == 0) ||
-                kernelWidth > 79 || kernelHeight > 79 || notGreaterThanZero(kernelWidth,kernelHeight)){
+        if( !greaterThanZeroAndIsOddWithMaxRange(79,kernelWidth,kernelHeight) ){
             throw new ConvolutionIllegalArgumentException(
                     "高斯卷积核",
                     kernelWidth,
@@ -46,7 +64,7 @@ public class ConvolutionKernelCheckUtil {
      * @throws ConvolutionIllegalArgumentException 当核心参数不符合规范时抛出此异常
      */
     public static void checkAverageKernel(int kernelWidth,int kernelHeight){
-        if( kernelWidth > 79 || kernelHeight > 79 || notGreaterThanZero(kernelWidth,kernelHeight)){
+        if( !greaterThanZeroWithMaxRange(79,kernelWidth,kernelHeight) ){
             throw new ConvolutionIllegalArgumentException(
                     "均值卷积核",
                     kernelWidth,
@@ -61,7 +79,7 @@ public class ConvolutionKernelCheckUtil {
      * @throws ConvolutionIllegalArgumentException 当核心参数不符合规范时抛出此异常
      */
     public static void checkMedianKernel(int kernelSize){
-        if( (kernelSize & 1) == 0 || kernelSize > 79 || notGreaterThanZero(kernelSize)){
+        if( !greaterThanZeroAndIsOddWithMaxRange(79,kernelSize) ){
             throw new ConvolutionIllegalArgumentException(
                     "中值卷积核",
                     kernelSize
@@ -76,7 +94,7 @@ public class ConvolutionKernelCheckUtil {
      * @throws ConvolutionIllegalArgumentException 当核心参数不符合规范时抛出此异常
      */
     public static void checkBoxKernel(int kernelWidth,int kernelHeight){
-        if( kernelWidth > 79 || kernelHeight > 79 || notGreaterThanZero(kernelWidth,kernelHeight)){
+        if( !greaterThanZeroWithMaxRange(79,kernelWidth,kernelHeight) ){
             throw new ConvolutionIllegalArgumentException(
                     "方框卷积核",
                     kernelWidth,

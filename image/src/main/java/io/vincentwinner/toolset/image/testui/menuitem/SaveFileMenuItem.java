@@ -2,13 +2,14 @@ package io.vincentwinner.toolset.image.testui.menuitem;
 
 import io.vincentwinner.toolset.image.testui.ImageViewPanel;
 import io.vincentwinner.toolset.image.testui.TestFrame;
+import io.vincentwinner.toolset.image.testui.Util;
+import io.vincentwinner.toolset.image.util.MatUtil;
+import org.bytedeco.opencv.opencv_core.Mat;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
 public class SaveFileMenuItem extends JMenuItem {
 
@@ -30,19 +31,16 @@ public class SaveFileMenuItem extends JMenuItem {
         });
         addActionListener(listener -> {
             ImageViewPanel contentPanel = TestFrame.contentPanel;
-            try {
-                int status = fileChooser.showSaveDialog(this);
-                if( status == JFileChooser.APPROVE_OPTION ){
-                    File imgFile = fileChooser.getSelectedFile();
-                    BufferedImage image = contentPanel.getImage();
-                    if(image != null && image.getWidth() != 0 && image.getHeight() != 0) {
-                        ImageIO.write(image, "png", imgFile);
-                    }else {
-                        JOptionPane.showMessageDialog(null,"没有打开任何图片！");
-                    }
+            int status = fileChooser.showSaveDialog(this);
+            if( status == JFileChooser.APPROVE_OPTION ){
+                File imgFile = fileChooser.getSelectedFile();
+                BufferedImage image = contentPanel.getImage();
+                Mat dst = Util.bufferedImageToMat(image);
+                if(image != null && image.getWidth() != 0 && image.getHeight() != 0) {
+                    MatUtil.writeMatToFile(dst,imgFile.getAbsolutePath());
+                }else {
+                    JOptionPane.showMessageDialog(null,"没有打开任何图片！");
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         });
     }

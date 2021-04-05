@@ -33,7 +33,7 @@ public class IntelliJIDEAColorTextFactory extends ColorTextFactory{
      */
     @Override
     public void uninstallColor() {
-        super.colorful = true;
+        super.colorful = false;
     }
 
 }

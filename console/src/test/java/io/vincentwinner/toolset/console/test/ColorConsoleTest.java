@@ -24,6 +24,8 @@ public class ColorConsoleTest {
         factory.setBackgroundColor(ConsoleColor.WHITE);
         factory.setForegroundColor(ConsoleColor.BLACK);
         System.out.println(factory.colorText(789));
+        factory.uninstallColor();
+        System.out.println(factory.colorText("123"));
     }
 
     /**

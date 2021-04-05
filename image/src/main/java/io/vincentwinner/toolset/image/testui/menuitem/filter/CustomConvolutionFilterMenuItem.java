@@ -58,7 +58,7 @@ public class CustomConvolutionFilterMenuItem extends JMenuItem {
         private static final JPanel fieldPanel = new JPanel();
         private static final JButton activeButton = new JButton("执行");
         private static int kernelSize;
-        private static int[] kernel;
+        private static double[] kernel;
 
         @SuppressWarnings("all")
         public OptionDialog(int rows,int cols) {
@@ -68,7 +68,8 @@ public class CustomConvolutionFilterMenuItem extends JMenuItem {
             setLayout(new BorderLayout());
             add(fieldPanel,BorderLayout.CENTER);
             kernelSize = rows * cols;
-            kernel = new int[kernelSize];
+            kernel = new double[kernelSize];
+            fieldPanel.removeAll();
             for (int i = 0; i < kernelSize; i++) {
                 JTextField field = new JTextField();
                 fieldPanel.add(field);
@@ -77,12 +78,12 @@ public class CustomConvolutionFilterMenuItem extends JMenuItem {
                 try{
                     for (int i = 0; i < kernelSize; i++) {
                         String numStr = ((JTextField)fieldPanel.getComponent(i)).getText();
-                        int num = numStr == null || "".equals(numStr) ? 0 : Integer.parseInt(numStr);
+                        double num = numStr == null || "".equals(numStr) ? 0 : Double.parseDouble(numStr);
                         kernel[i] = num;
                     }
                     activeImage();
                 }catch (NumberFormatException e){
-                    JOptionPane.showMessageDialog(null,"卷积核项须为整数（无论正负）","非法输入",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"卷积核项须为浮点数或整数（无论正负）","非法输入",JOptionPane.ERROR_MESSAGE);
                 }
             });
             add(activeButton,BorderLayout.SOUTH);

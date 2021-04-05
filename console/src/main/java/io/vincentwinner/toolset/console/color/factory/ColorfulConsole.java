@@ -21,4 +21,11 @@ public interface ColorfulConsole {
         AnsiConsole.systemInstall();
     }
 
+    /**
+     * 使控制台文字变为彩色
+     * @param text 原文字
+     * @return 彩色控制台文字
+     */
+    Object colorText(Object text);
+
 }

@@ -123,6 +123,7 @@ public abstract class ColorTextFactory extends Ansi implements ColorfulConsole, 
      *         在 installColor()方法执行之后返回彩色内容
      *         在 uninstallColor() 方法执行之后返回默认颜色内容
      */
+    @Override
     public Object colorText(Object text){
         if(!colorful) return text;
         Ansi ansi = ansi();
