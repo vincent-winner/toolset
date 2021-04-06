@@ -2,13 +2,11 @@ package io.vincentwinner.toolset.image.testui.menuitem;
 
 import io.vincentwinner.toolset.image.testui.ImageViewPanel;
 import io.vincentwinner.toolset.image.testui.TestFrame;
-import io.vincentwinner.toolset.image.testui.Util;
 import io.vincentwinner.toolset.image.util.MatUtil;
 import org.bytedeco.opencv.opencv_core.Mat;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class SaveFileMenuItem extends JMenuItem {
@@ -34,9 +32,8 @@ public class SaveFileMenuItem extends JMenuItem {
             int status = fileChooser.showSaveDialog(this);
             if( status == JFileChooser.APPROVE_OPTION ){
                 File imgFile = fileChooser.getSelectedFile();
-                BufferedImage image = contentPanel.getImage();
-                Mat dst = Util.bufferedImageToMat(image);
-                if(image != null && image.getWidth() != 0 && image.getHeight() != 0) {
+                Mat dst = contentPanel.getImageMat();
+                if(!dst.empty()) {
                     MatUtil.writeMatToFile(dst,imgFile.getAbsolutePath());
                 }else {
                     JOptionPane.showMessageDialog(null,"没有打开任何图片！");

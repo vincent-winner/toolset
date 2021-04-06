@@ -1,5 +1,8 @@
 package io.vincentwinner.toolset.image.testui;
 
+import io.vincentwinner.toolset.image.ImageExtension;
+import org.bytedeco.opencv.opencv_core.Mat;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,15 +12,15 @@ import java.awt.image.BufferedImage;
  */
 public class ImageViewPanel extends JPanel {
 
-    private BufferedImage initImage;
-    private BufferedImage image;
+    private Mat initImageMat;
+    private Mat imageMat;
 
     public ImageViewPanel() {
     }
 
-    public ImageViewPanel(BufferedImage bufferedImage) {
-        this.image = bufferedImage;
-        this.initImage = bufferedImage;
+    public ImageViewPanel(final Mat imageMat) {
+        this.initImageMat = imageMat.clone();
+        this.imageMat = initImageMat.clone();
     }
 
     /**
@@ -27,7 +30,8 @@ public class ImageViewPanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        if (image != null) {
+        if (imageMat != null) {
+            BufferedImage image = Util.mat2BufferedImage(imageMat, ImageExtension.PNG);
             Graphics2D g2 = (Graphics2D) g;
             g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
                     RenderingHints.VALUE_INTERPOLATION_BICUBIC);
@@ -47,18 +51,26 @@ public class ImageViewPanel extends JPanel {
     }
 
     public BufferedImage getImage() {
-        return image;
-    }
-
-    public void setImage(BufferedImage image) {
-        this.image = image;
-        if (initImage == null){
-            this.initImage = image;
-        }
+        return Util.matToBufferedImage(imageMat.clone());
     }
 
     public BufferedImage getInitImage(){
-        return this.initImage;
+        return Util.matToBufferedImage(imageMat.clone());
+    }
+
+    public Mat getImageMat(){
+        return imageMat.clone();
+    }
+
+    public Mat getInitImageMat(){
+        return initImageMat.clone();
+    }
+
+    public void setImageMat(Mat imageMat) {
+        if (initImageMat == null){
+            this.initImageMat = imageMat.clone();
+        }
+        this.imageMat = imageMat.clone();
     }
 
 }

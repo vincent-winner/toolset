@@ -2,9 +2,9 @@ package io.vincentwinner.toolset.image.testui.menuitem;
 
 import io.vincentwinner.toolset.image.testui.ImageViewPanel;
 import io.vincentwinner.toolset.image.testui.TestFrame;
+import org.bytedeco.opencv.opencv_core.Mat;
 
 import javax.swing.*;
-import java.awt.image.BufferedImage;
 
 public class ReOpenMenuItem extends JMenuItem {
 
@@ -13,9 +13,10 @@ public class ReOpenMenuItem extends JMenuItem {
     public ReOpenMenuItem(){
         setText("重新打开(图像复位)");
         addActionListener(listener -> {
-            BufferedImage initImage = panel.getInitImage();
-            if(initImage != null) {
-                panel.setImage(panel.getInitImage());
+            Mat initImageMat = panel.getInitImageMat();
+            if(initImageMat != null && !initImageMat.empty()) {
+                panel.setImageMat(initImageMat);
+                initImageMat.release();
                 panel.repaint();
             } else{
                 JOptionPane.showMessageDialog(

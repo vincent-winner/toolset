@@ -2,13 +2,12 @@ package io.vincentwinner.toolset.image.testui.menuitem;
 
 import io.vincentwinner.toolset.image.testui.ImageViewPanel;
 import io.vincentwinner.toolset.image.testui.TestFrame;
+import io.vincentwinner.toolset.image.util.MatUtil;
+import org.bytedeco.opencv.opencv_core.Mat;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
 /**
  * 打开文件菜单
@@ -33,16 +32,13 @@ public class OpenFileMenuItem extends JMenuItem {
         });
         addActionListener(listener -> {
             ImageViewPanel contentPanel = TestFrame.contentPanel;
-            try {
-                int status = fileChooser.showOpenDialog(this);
-                if( status == JFileChooser.APPROVE_OPTION ){
-                    File imgFile = fileChooser.getSelectedFile();
-                    BufferedImage image = ImageIO.read(imgFile);
-                    contentPanel.setImage(image);
-                    contentPanel.repaint();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            int status = fileChooser.showOpenDialog(this);
+            if( status == JFileChooser.APPROVE_OPTION ){
+                File imgFile = fileChooser.getSelectedFile();
+                Mat src = MatUtil.readFileToMat(imgFile.getAbsolutePath());
+                contentPanel.setImageMat(src);
+                src.release();
+                contentPanel.repaint();
             }
         });
     }

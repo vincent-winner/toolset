@@ -4,7 +4,6 @@ import io.vincentwinner.toolset.image.DDepth;
 import io.vincentwinner.toolset.image.filter.blur.BoxBlur;
 import io.vincentwinner.toolset.image.testui.ImageViewPanel;
 import io.vincentwinner.toolset.image.testui.TestFrame;
-import io.vincentwinner.toolset.image.testui.Util;
 import org.bytedeco.opencv.opencv_core.Mat;
 
 import javax.swing.*;
@@ -59,12 +58,14 @@ public class BoxBlurMenuItem extends JMenuItem {
 
         private static void activeImage(){
             if(panel.getInitImage() != null){
-                Mat mat = BoxBlur.boxConvolution(Util.bufferedImageToMat(panel.getInitImage()), DDepth.ORIGINAL, kernelWidth, kernelHeight);
-                panel.setImage(Util.matToBufferedImage(mat));
+                Mat src = panel.getInitImageMat();
+                Mat mat = BoxBlur.boxConvolution(src, DDepth.ORIGINAL, kernelWidth, kernelHeight);
+                panel.setImageMat(mat);
+                src.release();
+                mat.release();
                 panel.repaint();
             }
         }
-
     }
 
     public BoxBlurMenuItem() {

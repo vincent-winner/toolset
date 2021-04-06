@@ -3,11 +3,12 @@ package io.vincentwinner.toolset.image.testui.menuitem.filter.blur;
 import io.vincentwinner.toolset.image.filter.blur.AverageBlur;
 import io.vincentwinner.toolset.image.testui.ImageViewPanel;
 import io.vincentwinner.toolset.image.testui.TestFrame;
-import io.vincentwinner.toolset.image.testui.Util;
 import org.bytedeco.opencv.opencv_core.Mat;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class AverageBlurMenuItem extends JMenuItem {
 
@@ -22,6 +23,8 @@ public class AverageBlurMenuItem extends JMenuItem {
         private final JSlider kernelHeightSlider = new JSlider(JSlider.HORIZONTAL, 1, 79, kernelHeight);
 
         private static final ImageViewPanel panel = TestFrame.contentPanel;
+
+        private static Mat bufferedMat;
 
         @SuppressWarnings("all")
         public OptionDialog() {
@@ -38,6 +41,13 @@ public class AverageBlurMenuItem extends JMenuItem {
                 kernelHeight = kernelHeightSlider.getValue();
                 kernelHeightLabel.setText("卷积核高:" + kernelHeight);
                 activeImage();
+            });
+            addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    super.windowClosed(e);
+                    if(bufferedMat != null) bufferedMat.release();
+                }
             });
             add(kernelWidthLabel);
             add(kernelWidthSlider);
@@ -58,8 +68,11 @@ public class AverageBlurMenuItem extends JMenuItem {
 
         private static void activeImage(){
             if(panel.getInitImage() != null){
-                Mat mat = AverageBlur.averageConvolution(Util.bufferedImageToMat(panel.getInitImage()), kernelWidth, kernelHeight);
-                panel.setImage(Util.matToBufferedImage(mat));
+                Mat src = panel.getImageMat();
+                Mat mat = AverageBlur.averageConvolution(src, kernelWidth, kernelHeight);
+                panel.setImageMat(mat);
+                src.release();
+                mat.release();
                 panel.repaint();
             }
         }

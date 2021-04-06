@@ -3,7 +3,6 @@ package io.vincentwinner.toolset.image.testui.menuitem.filter;
 import io.vincentwinner.toolset.image.filter.CustomConvolutionFilter;
 import io.vincentwinner.toolset.image.testui.ImageViewPanel;
 import io.vincentwinner.toolset.image.testui.TestFrame;
-import io.vincentwinner.toolset.image.testui.Util;
 import org.bytedeco.opencv.opencv_core.Mat;
 
 import javax.swing.*;
@@ -94,8 +93,11 @@ public class CustomConvolutionFilterMenuItem extends JMenuItem {
 
         private static void activeImage(){
             if(panel.getInitImage() != null && kernel != null){
-                Mat mat = CustomConvolutionFilter.customConvolution(Util.bufferedImageToMat(panel.getInitImage()), kernel);
-                panel.setImage(Util.matToBufferedImage(mat));
+                Mat src = panel.getImageMat();
+                Mat mat = CustomConvolutionFilter.customConvolution(src, kernel);
+                panel.setImageMat(mat);
+                src.release();
+                mat.release();
                 panel.repaint();
             }
         }
