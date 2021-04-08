@@ -25,4 +25,18 @@ public class TranslateColorFilterMenuItems {
         }
     }
 
+    public static class DeleteColorMenuItem extends JMenuItem{
+        public DeleteColorMenuItem(){
+            setText("去色");
+            addActionListener(listener -> {
+                Mat src = panel.getImageMat();
+                Mat dst = TranslateColorFilter.deleteColor(src);
+                panel.setImageMat(dst);
+                src.release();
+                dst.release();
+                panel.repaint();
+            });
+        }
+    }
+
 }

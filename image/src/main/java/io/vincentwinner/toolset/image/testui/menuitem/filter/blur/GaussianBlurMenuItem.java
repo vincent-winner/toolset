@@ -7,6 +7,8 @@ import org.bytedeco.opencv.opencv_core.Mat;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class GaussianBlurMenuItem extends JMenuItem {
 
@@ -29,6 +31,24 @@ public class GaussianBlurMenuItem extends JMenuItem {
                 kernelWidthLabel.setText("σ值:" + sigma);
                 activeImage();
             });
+            addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                    panel.setBufferedMat(panel.getImageMat());
+                    kernelWidthSlider.setValue(1);
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    System.gc();
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    Mat bufferedMat = panel.getBufferedMat();
+                    if(bufferedMat != null) bufferedMat.release();
+                }
+            });
             add(kernelWidthLabel);
             add(kernelWidthSlider);
             setBounds(500,120,600,150);
@@ -46,7 +66,7 @@ public class GaussianBlurMenuItem extends JMenuItem {
 
         private static void activeImage(){
             if(panel.getInitImage() != null){
-                Mat src = panel.getInitImageMat();
+                Mat src = panel.getBufferedMat();
                 Mat mat = GaussianBlur.gaussianConvolution(src, sigma);
                 panel.setImageMat(mat);
                 src.release();

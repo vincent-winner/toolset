@@ -26,6 +26,7 @@ import javax.swing.*;
  *            └边缘提取
  *              ├拉普拉斯
  *              ├索贝尔
+ *              └精确
  */
 public class EffectMenuBar extends JMenuBar {
 
@@ -37,6 +38,7 @@ public class EffectMenuBar extends JMenuBar {
     private final JMenu filterMenu = new JMenu("滤镜");
     private final JMenuItem customConvolutionFilter = new CustomConvolutionFilterMenuItem();
     private final JMenuItem inverseColor = new TranslateColorFilterMenuItems.InverseColorMenuItem();
+    private final JMenuItem deleteColor = new TranslateColorFilterMenuItems.DeleteColorMenuItem();
 
     private final JMenu blurMenu = new JMenu("模糊");
     private final JMenuItem averageBlur = new AverageBlurMenuItem();
@@ -48,11 +50,13 @@ public class EffectMenuBar extends JMenuBar {
     private final JMenu edgeExtractMenu = new JMenu("边缘提取");
     private final JMenuItem laplacianEdgeExtract = new EdgeExtractMenuItems.LaplacianEdgeExtractMenuItem();
     private final JMenuItem sobelEdgeExtract = new EdgeExtractMenuItems.SobelEdgeExtractMenuItem();
+    private final JMenuItem cannyEdgeExtract = new EdgeExtractMenuItems.CannyEdgeExtractMenuItem();
 
     public EffectMenuBar(){
         initMenuBarUI();
     }
 
+    @SuppressWarnings("all")
     private void initMenuBarUI(){
         fileMenu.add(openFile);
         fileMenu.add(saveFile);
@@ -65,10 +69,12 @@ public class EffectMenuBar extends JMenuBar {
 
         edgeExtractMenu.add(laplacianEdgeExtract);
         edgeExtractMenu.add(sobelEdgeExtract);
+        edgeExtractMenu.add(cannyEdgeExtract);
         stylizeMenu.add(edgeExtractMenu);
 
         filterMenu.add(customConvolutionFilter);
         filterMenu.add(inverseColor);
+        filterMenu.add(deleteColor);
         filterMenu.add(blurMenu);
         filterMenu.add(stylizeMenu);
 

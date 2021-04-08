@@ -16,7 +16,9 @@ public class ReOpenMenuItem extends JMenuItem {
             Mat initImageMat = panel.getInitImageMat();
             if(initImageMat != null && !initImageMat.empty()) {
                 panel.setImageMat(initImageMat);
+                panel.releaseBuffer();
                 initImageMat.release();
+                System.gc();
                 panel.repaint();
             } else{
                 JOptionPane.showMessageDialog(

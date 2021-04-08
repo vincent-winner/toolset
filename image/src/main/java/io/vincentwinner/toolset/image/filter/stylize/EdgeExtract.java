@@ -77,4 +77,35 @@ public class EdgeExtract {
         return result;
     }
 
+    /**
+     * 精确边缘检测
+     * 阈值参数建议高阈值为低阈值的两倍或三倍
+     * @param src 源图像矩阵
+     * @param thresholdLow 低阈值（连接高阈值检测后断续的边缘）
+     * @param thresholdHigh 高阈值（检测图像明显边缘）
+     * @param kernelSize 核心大小（null默认为3）
+     * @param L2Gradient 是否启用 L2 范数
+     *                   L2范数：两个方向的倒数的平方和再开放（更精确，计算量更大）
+     *                   L1范数：直接将两个方向导数的绝对值相加
+     * @return 边缘检测结果矩阵
+     */
+    public static Mat canny(Mat src,double thresholdLow,double thresholdHigh,Integer kernelSize,boolean L2Gradient){
+        Mat dst = new Mat();
+        opencv_imgproc.Canny(src,dst,thresholdLow,thresholdHigh,kernelSize == null ? 3 : kernelSize,L2Gradient);
+        src.release();
+        return dst;
+    }
+
+    /**
+     * 精确边缘检测
+     * @param src 源图像
+     * @param L2Gradient 是否启用 L2 范数
+     *                   L2范数：两个方向的倒数的平方和再开放（更精确，计算量更大）
+     *                   L1范数：直接将两个方向导数的绝对值相加
+     * @return 边缘检测结果矩阵
+     */
+    public static Mat canny(Mat src,boolean L2Gradient){
+        return canny(src,50,150,3,L2Gradient);
+    }
+
 }

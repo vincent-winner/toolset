@@ -1,6 +1,7 @@
 package io.vincentwinner.toolset.image.testui;
 
 import io.vincentwinner.toolset.image.ImageExtension;
+import io.vincentwinner.toolset.image.util.MatUtil;
 import org.bytedeco.opencv.opencv_core.Mat;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class ImageViewPanel extends JPanel {
 
     private Mat initImageMat;
     private Mat imageMat;
+    private Mat bufferedMat;
 
     public ImageViewPanel() {
     }
@@ -31,7 +33,7 @@ public class ImageViewPanel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         if (imageMat != null) {
-            BufferedImage image = Util.mat2BufferedImage(imageMat, ImageExtension.PNG);
+            BufferedImage image = MatUtil.mat2BufferedImage(imageMat, ImageExtension.PNG);
             Graphics2D g2 = (Graphics2D) g;
             g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
                     RenderingHints.VALUE_INTERPOLATION_BICUBIC);
@@ -51,11 +53,11 @@ public class ImageViewPanel extends JPanel {
     }
 
     public BufferedImage getImage() {
-        return Util.matToBufferedImage(imageMat.clone());
+        return MatUtil.matToBufferedImage(imageMat.clone());
     }
 
     public BufferedImage getInitImage(){
-        return Util.matToBufferedImage(imageMat.clone());
+        return MatUtil.matToBufferedImage(imageMat.clone());
     }
 
     public Mat getImageMat(){
@@ -67,10 +69,30 @@ public class ImageViewPanel extends JPanel {
     }
 
     public void setImageMat(Mat imageMat) {
-        if (initImageMat == null){
+        setImageMat(imageMat,false);
+    }
+
+    public void setImageMat(Mat imageMat,boolean overwriteInitImageMat){
+        if (initImageMat == null || overwriteInitImageMat){
+            if(initImageMat != null) initImageMat.release();
             this.initImageMat = imageMat.clone();
         }
+        if(this.imageMat != null) this.imageMat.release();
         this.imageMat = imageMat.clone();
+    }
+
+    public void setBufferedMat(Mat mat){
+        releaseBuffer();
+        this.bufferedMat = mat;
+    }
+
+    public Mat getBufferedMat(){
+        return this.bufferedMat.clone();
+    }
+
+    public void releaseBuffer(){
+        if(this.bufferedMat != null)
+            this.bufferedMat.release();
     }
 
 }

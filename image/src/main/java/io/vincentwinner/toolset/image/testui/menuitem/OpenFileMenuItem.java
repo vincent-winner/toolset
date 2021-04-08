@@ -36,8 +36,10 @@ public class OpenFileMenuItem extends JMenuItem {
             if( status == JFileChooser.APPROVE_OPTION ){
                 File imgFile = fileChooser.getSelectedFile();
                 Mat src = MatUtil.readFileToMat(imgFile.getAbsolutePath());
-                contentPanel.setImageMat(src);
+                contentPanel.setImageMat(src,true);
+                contentPanel.releaseBuffer();
                 src.release();
+                System.gc();
                 contentPanel.repaint();
             }
         });
