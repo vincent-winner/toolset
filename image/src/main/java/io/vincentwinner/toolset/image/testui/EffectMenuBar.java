@@ -7,6 +7,7 @@ import io.vincentwinner.toolset.image.testui.menuitem.filter.CustomConvolutionFi
 import io.vincentwinner.toolset.image.testui.menuitem.filter.TranslateColorFilterMenuItems;
 import io.vincentwinner.toolset.image.testui.menuitem.filter.blur.*;
 import io.vincentwinner.toolset.image.testui.menuitem.filter.stylize.EdgeExtractMenuItems;
+import io.vincentwinner.toolset.image.testui.menuitem.filter.stylize.OilPaintingMenuItem;
 
 import javax.swing.*;
 
@@ -23,6 +24,7 @@ import javax.swing.*;
  *          │ ├高斯模糊
  *          │ └中值模糊
  *          └风格化
+ *            ├油画
  *            └边缘提取
  *              ├拉普拉斯
  *              ├索贝尔
@@ -47,6 +49,7 @@ public class EffectMenuBar extends JMenuBar {
     private final JMenuItem medianBlur = new MedianBlurMenuItem();
 
     private final JMenu stylizeMenu = new JMenu("风格化");
+    private final JMenuItem oilPainting = new OilPaintingMenuItem();
     private final JMenu edgeExtractMenu = new JMenu("边缘提取");
     private final JMenuItem laplacianEdgeExtract = new EdgeExtractMenuItems.LaplacianEdgeExtractMenuItem();
     private final JMenuItem sobelEdgeExtract = new EdgeExtractMenuItems.SobelEdgeExtractMenuItem();
@@ -70,6 +73,7 @@ public class EffectMenuBar extends JMenuBar {
         edgeExtractMenu.add(laplacianEdgeExtract);
         edgeExtractMenu.add(sobelEdgeExtract);
         edgeExtractMenu.add(cannyEdgeExtract);
+        stylizeMenu.add(oilPainting);
         stylizeMenu.add(edgeExtractMenu);
 
         filterMenu.add(customConvolutionFilter);
