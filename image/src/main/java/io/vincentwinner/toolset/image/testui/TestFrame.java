@@ -13,7 +13,7 @@ public class TestFrame extends JFrame {
 
     public TestFrame() {
         try {
-            javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+            javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch	(Exception e) {
             e.printStackTrace();
         }

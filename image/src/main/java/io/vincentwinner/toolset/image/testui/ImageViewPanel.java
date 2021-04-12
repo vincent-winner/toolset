@@ -90,9 +90,20 @@ public class ImageViewPanel extends JPanel {
         return this.bufferedMat.clone();
     }
 
+    public boolean hasBuffer(){
+        return this.bufferedMat != null && !this.bufferedMat.empty();
+    }
+
     public void releaseBuffer(){
         if(this.bufferedMat != null)
-            this.bufferedMat.release();
+            this.bufferedMat.release();this.bufferedMat = null;
+    }
+
+    public void releaseInit(){
+        if(this.initImageMat != null)
+            this.initImageMat.release();this.initImageMat = null;
+        if(this.imageMat != null)
+            this.imageMat.release();this.imageMat = null;
     }
 
 }

@@ -8,6 +8,7 @@ import io.vincentwinner.toolset.image.testui.menuitem.filter.TranslateColorFilte
 import io.vincentwinner.toolset.image.testui.menuitem.filter.blur.*;
 import io.vincentwinner.toolset.image.testui.menuitem.filter.stylize.EdgeExtractMenuItems;
 import io.vincentwinner.toolset.image.testui.menuitem.filter.stylize.OilPaintingMenuItem;
+import io.vincentwinner.toolset.image.testui.menuitem.filter.stylize.WatercolorPaintingMenuItem;
 
 import javax.swing.*;
 
@@ -25,6 +26,7 @@ import javax.swing.*;
  *          │ └中值模糊
  *          └风格化
  *            ├油画
+ *            ├水彩
  *            └边缘提取
  *              ├拉普拉斯
  *              ├索贝尔
@@ -50,6 +52,7 @@ public class EffectMenuBar extends JMenuBar {
 
     private final JMenu stylizeMenu = new JMenu("风格化");
     private final JMenuItem oilPainting = new OilPaintingMenuItem();
+    private final JMenuItem watercolorPainting = new WatercolorPaintingMenuItem();
     private final JMenu edgeExtractMenu = new JMenu("边缘提取");
     private final JMenuItem laplacianEdgeExtract = new EdgeExtractMenuItems.LaplacianEdgeExtractMenuItem();
     private final JMenuItem sobelEdgeExtract = new EdgeExtractMenuItems.SobelEdgeExtractMenuItem();
@@ -74,6 +77,7 @@ public class EffectMenuBar extends JMenuBar {
         edgeExtractMenu.add(sobelEdgeExtract);
         edgeExtractMenu.add(cannyEdgeExtract);
         stylizeMenu.add(oilPainting);
+        stylizeMenu.add(watercolorPainting);
         stylizeMenu.add(edgeExtractMenu);
 
         filterMenu.add(customConvolutionFilter);

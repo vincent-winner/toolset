@@ -73,7 +73,7 @@ public class OilPaintingMenuItem extends JMenuItem {
         }
 
         private static void activeImage(){
-            if(panel.getInitImage() != null){
+            if(panel.getBufferedMat() != null){
                 Mat src = panel.getBufferedMat();
                 Mat mat = OilPainting.oilPainting(src, size, dynRatio);
                 panel.setImageMat(mat);

@@ -46,7 +46,7 @@ public class EdgeExtractMenuItems {
             private final JTextField thresholdLow = new JTextField("低阈值（浮点数默认50）");
             private final JTextField thresholdHigh = new JTextField("高阈值(浮点数默认150)");
             private final JLabel kernelSizeLabel = new JLabel("卷积核大小（默认值 3）：");
-            private final JComboBox<Integer> kernelSize = new JComboBox<Integer>(new Integer[]{1,3,5,7,9});
+            private final JComboBox<Integer> kernelSize = new JComboBox<Integer>(new Integer[]{3,5,7});
             private final JButton okButton = new JButton("执行");
             private final ImageViewPanel panel = TestFrame.contentPanel;
             private OptionDialog(){

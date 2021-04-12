@@ -16,7 +16,10 @@ public class ReOpenMenuItem extends JMenuItem {
             Mat initImageMat = panel.getInitImageMat();
             if(initImageMat != null && !initImageMat.empty()) {
                 panel.setImageMat(initImageMat);
-                panel.releaseBuffer();
+                if(panel.hasBuffer()){
+                    panel.releaseBuffer();
+                    panel.setBufferedMat(panel.getInitImageMat());
+                }
                 initImageMat.release();
                 System.gc();
                 panel.repaint();
