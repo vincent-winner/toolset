@@ -60,7 +60,7 @@ public class WatercolorPaintingMenuItem extends JMenuItem {
             add(sigmaRLabel);
             add(sigmaRField);
             add(okButton);
-            setBounds(500,120,220,120);
+            setBounds(500,120,330,70);
             setVisible(true);
             setAlwaysOnTop(true);
         }
