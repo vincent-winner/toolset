@@ -54,7 +54,7 @@ public class CustomConvolutionFilter {
      */
     public static Mat customConvolution(Mat src,Mat kernel){
         Mat dst = new Mat();
-        opencv_imgproc.filter2D(src,dst, DDepth.CV_16S.value(), kernel,new Point(-1,-1),0,4);
+        opencv_imgproc.filter2D(src,dst, DDepth.ORIGINAL.value(), kernel,new Point(-1,-1),0,4);
         src.release();
         return dst;
     }
