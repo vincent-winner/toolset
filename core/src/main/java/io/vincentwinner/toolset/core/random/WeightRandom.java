@@ -1,8 +1,7 @@
-package io.vincentwinner.toolset.random.weight;
+package io.vincentwinner.toolset.core.random;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Random;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.concurrent.ThreadLocalRandom;
@@ -16,10 +15,11 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * @param <T> 随机数据类型
  */
-public abstract class WeightRandom<T> implements Serializable {
+public class WeightRandom<T> implements Serializable {
 
     private static final long serialVersionUID = -2530606928826485750L;
 
+    private T value;
     private final TreeMap<Double,T> weightMap;
 
     public WeightRandom(){
@@ -28,7 +28,7 @@ public abstract class WeightRandom<T> implements Serializable {
 
     public WeightRandom(List<WeightObject<T>> weightObjects){
         this();
-        if(!weightObjects.isEmpty()) weightObjects.forEach(this::add);
+        weightObjects.forEach(this::add);
     }
 
     /**
@@ -51,18 +51,41 @@ public abstract class WeightRandom<T> implements Serializable {
             final double weight = weightObject.getWeight();
             if(weightObject.getWeight() > 0) {
                 double lastWeight = (this.weightMap.size() == 0) ? 0 : this.weightMap.lastKey();
-                this.weightMap.put(weight + lastWeight, weightObject.getValue());// 权重累加
+                this.weightMap.put(weight + lastWeight, weightObject.getValue());
             }
         }
         return this;
     }
 
+    /**
+     * 清空权重表
+     * @return 空的权重随机对象
+     */
+    public WeightRandom<T> clearAll() {
+        if(null != this.weightMap) {
+            this.weightMap.clear();
+        }
+        return this;
+    }
+
+    /**
+     * 按照权重分布返回下一个随机数
+     * @return 随机数
+     */
     public T next() {
         if(this.weightMap.isEmpty()) return null;
-        final Random random = ThreadLocalRandom.current();
-        final double randomWeight = this.weightMap.lastKey() * random.nextDouble();
+        final double randomWeight = this.weightMap.lastKey() * ThreadLocalRandom.current().nextDouble();
         final SortedMap<Double, T> tailMap = this.weightMap.tailMap(randomWeight, false);
-        return this.weightMap.get(tailMap.firstKey());
+        value = this.weightMap.get(tailMap.firstKey());
+        return value;
+    }
+
+    /**
+     * 返回当前随机值
+     * @return 当前随机值
+     */
+    public T value(){
+        return this.value;
     }
 
     /**
@@ -73,7 +96,10 @@ public abstract class WeightRandom<T> implements Serializable {
 
         private static final long serialVersionUID = 5506463557541092406L;
 
+        //值
         private T value;
+
+        //值的权重
         private final double weight;
 
         public WeightObject(T value, double weight) {

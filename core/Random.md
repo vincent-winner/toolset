@@ -27,7 +27,7 @@
 #### <span id="all">1.生成各种随机内容</span>
 
 ```java
-import io.vincentwinner.toolset.random.*;
+import io.vincentwinner.toolset.core.random.Random;
 
 public class RandomTest {
     public static void main(String[] args) {
@@ -42,7 +42,8 @@ public class RandomTest {
 
 ```java
 import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
-import io.vincentwinner.toolset.random.*;
+import io.vincentwinner.toolset.core.random.Random;
+import io.vincentwinner.toolset.core.random.RandomDouble;
 
 public class RandomDoubleTest {
 
@@ -63,7 +64,8 @@ public class RandomDoubleTest {
 
 ```java
 import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
-import io.vincentwinner.toolset.random.*;
+import io.vincentwinner.toolset.core.random.Random;
+import io.vincentwinner.toolset.core.random.RandomInt;
 
 public class RandomIntTest {
 
@@ -93,8 +95,8 @@ public class RandomIntTest {
 
 ```java
 import io.vincentwinner.toolset.core.domain.StringDomain;
-import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
-import io.vincentwinner.toolset.random.*;
+import io.vincentwinner.toolset.core.random.Random;
+import io.vincentwinner.toolset.core.random.RandomString;
 
 public class RandomStringTest {
 

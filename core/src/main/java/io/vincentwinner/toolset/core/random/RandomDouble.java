@@ -1,4 +1,4 @@
-package io.vincentwinner.toolset.random;
+package io.vincentwinner.toolset.core.random;
 
 import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
 

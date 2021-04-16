@@ -29,7 +29,6 @@
 
 		<project.platform>windows-x86_64</project.platform>
 
-		<random.version>1.0.1</random.version>
 		<console.version>1.0.1</console.version>
 		<osmodule.version>1.0.1</osmodule.version>
 		<classloader.version>1.0.1</classloader.version>
@@ -141,11 +140,6 @@
 				<groupId>com.google.zxing</groupId>
 				<artifactId>javase</artifactId>
 				<version>3.4.1</version>
-			</dependency>
-			<dependency>
-				<groupId>io.vincentwinner.toolset</groupId>
-				<artifactId>random</artifactId>
-				<version>${random.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.vincentwinner.toolset</groupId>

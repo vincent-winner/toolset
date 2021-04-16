@@ -38,6 +38,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/face-id/pom.xml" />
+        <option value="$PROJECT_DIR$/random/pom.xml" />
         <option value="$PROJECT_DIR$/toolset-all/pom.xml" />
         <option value="$PROJECT_DIR$/toolset-spring-boot-starter/pom.xml" />
       </set>

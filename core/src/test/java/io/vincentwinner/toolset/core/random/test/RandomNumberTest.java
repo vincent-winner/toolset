@@ -1,10 +1,10 @@
-package io.vincentwinner.toolset.random.test;
+package io.vincentwinner.toolset.core.random.test;
 
 import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
-import io.vincentwinner.toolset.random.Random;
-import io.vincentwinner.toolset.random.RandomDouble;
-import io.vincentwinner.toolset.random.RandomInt;
-import io.vincentwinner.toolset.random.RandomLong;
+import io.vincentwinner.toolset.core.random.Random;
+import io.vincentwinner.toolset.core.random.RandomDouble;
+import io.vincentwinner.toolset.core.random.RandomInt;
+import io.vincentwinner.toolset.core.random.RandomLong;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
