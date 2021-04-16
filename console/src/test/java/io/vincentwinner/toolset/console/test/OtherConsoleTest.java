@@ -34,7 +34,9 @@ public class OtherConsoleTest {
                 "                                  \n" +
                 "                                  \n" +
                 "                                  ";
-        Assert.assertEquals(three_d_ascii,ConsoleBanner.create("ABC", BannerFont.THREE_D_ASCII));
+        String banner = ConsoleBanner.create("ABC", BannerFont.THREE_D_ASCII);
+        Assert.assertEquals(three_d_ascii,banner);
+        System.out.println(banner);
     }
 
 }

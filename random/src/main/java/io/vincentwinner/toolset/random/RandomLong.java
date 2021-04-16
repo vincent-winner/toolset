@@ -2,6 +2,8 @@ package io.vincentwinner.toolset.random;
 
 import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * 随机长整数
  */
@@ -37,7 +39,7 @@ public class RandomLong extends Random<Long>{
      * @param max 最大值
      */
     public static long randomLong(long min,long max){
-        return (long)(Math.random() * (max - min + 1) + min);
+        return (long)(ThreadLocalRandom.current().nextDouble() * (max - min + 1) + min);
     }
 
 }

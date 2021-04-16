@@ -11,6 +11,7 @@
         <module name="image" />
         <module name="core" />
         <module name="os" />
+        <module name="qrcode" />
         <module name="face-id" />
         <module name="class-loader" />
         <module name="crypto" />

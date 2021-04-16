@@ -17,6 +17,7 @@
 		<module>ai</module>
 		<module>image</module>
 		<module>core</module>
+		<module>qrcode</module>
 	</modules>
 
 	<properties>
@@ -130,6 +131,16 @@
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-simple</artifactId>
 				<version>1.7.5</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>core</artifactId>
+				<version>3.4.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>javase</artifactId>
+				<version>3.4.1</version>
 			</dependency>
 			<dependency>
 				<groupId>io.vincentwinner.toolset</groupId>

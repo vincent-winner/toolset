@@ -2,6 +2,8 @@ package io.vincentwinner.toolset.random;
 
 import io.vincentwinner.toolset.core.domain.unary.UnaryDomain;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * 随机双精度浮点数
  */
@@ -37,6 +39,6 @@ public class RandomDouble extends Random<Double>{
      * @param max 最大值
      */
     public static double randomDouble(double min,double max){
-        return Math.random() * (max - min) + min;
+        return ThreadLocalRandom.current().nextDouble() * (max - min) + min;
     }
 }

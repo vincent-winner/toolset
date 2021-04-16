@@ -26,7 +26,7 @@ public class SeetafaceTest {
     public void _01_testFaceDetect() throws Exception{
         InputStream picStream = SeetafaceTest.class.getClassLoader().getResourceAsStream("001.jpg");
         Future<SeetaRect[]> resultFuture = service.submitDetect(picStream);
-        picStream = SeetafaceTest.class.getClassLoader().getResourceAsStream("001.jpg");;
+        picStream = SeetafaceTest.class.getClassLoader().getResourceAsStream("001.jpg");
         new ImageFrame(picStream,resultFuture,SeetaRect[].class);
         TimeUnit.MILLISECONDS.sleep(3000);
     }

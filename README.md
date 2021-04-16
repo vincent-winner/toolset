@@ -12,6 +12,7 @@
 |[classloader](class-loader/README.md)|各种功能的类加载器|
 |[ai](ai/README.md)|人工智能模块|
 |[image](image/README.md)|图像处理|
+|[qrcode](qrcode/README.md)|二维码|
 
 注意：
 - 修改pom.xml中的 project.platform 选项来指定编译平台，目前 project.platform 选项只会影响到 image 模块，需要此选项的原因是 Image 模块导入了opencv 的动态链接库，而动态链接库不跨平台
