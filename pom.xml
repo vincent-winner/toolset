@@ -9,7 +9,6 @@
 	<packaging>pom</packaging>
 	<version>1.0.1</version>
 	<modules>
-		<module>random</module>
 		<module>console</module>
 		<module>os</module>
 		<module>crypto</module>
