@@ -125,7 +125,13 @@ public class SeetaProperty implements Serializable {
         if(Instance.INSTANCE == null){
             synchronized (SeetaProperty.class){
                 if(Instance.INSTANCE == null){
-                    Instance.INSTANCE = fromStream(SeetaProperty.class.getClassLoader().getResourceAsStream("ai-faceid-seeta.properties"));
+                    ClassLoader classLoader = SeetaProperty.class.getClassLoader();
+                    InputStream propertiesStream = classLoader.getResourceAsStream("ai-faceid-seeta.properties");
+                    if(propertiesStream != null){
+                        Instance.INSTANCE = fromStream(propertiesStream);
+                    }else {
+                        Instance.INSTANCE = fromStream(classLoader.getResourceAsStream("ai-faceid-seeta.common.properties"));
+                    }
                 }
             }
         }

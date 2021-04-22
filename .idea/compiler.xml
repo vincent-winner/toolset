@@ -14,6 +14,7 @@
         <module name="face-id" />
         <module name="class-loader" />
         <module name="crypto" />
+        <module name="ocr" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

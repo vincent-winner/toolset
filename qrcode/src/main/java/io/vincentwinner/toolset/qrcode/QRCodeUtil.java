@@ -45,13 +45,12 @@ public class QRCodeUtil {
             // 生成二维码对应的位矩阵对象
             matrix = new MultiFormatWriter().encode(contents, format, width, height, hints);
         } catch (WriterException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         // 设置位矩阵转图片的参数
         MatrixToImageConfig config = new MatrixToImageConfig(Color.black.getRGB(), Color.white.getRGB());
         // 位矩阵对象转BufferedImage对象
-        BufferedImage qrcode = MatrixToImageWriter.toBufferedImage(matrix, config);
-        return qrcode;
+        return MatrixToImageWriter.toBufferedImage(matrix, config);
     }
 
     /**
