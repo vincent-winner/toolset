@@ -2,6 +2,10 @@ package io.vincentwinner.toolset.console.color;
 
 import org.fusesource.jansi.Ansi;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 可以用于控制台背景色和前景色的颜色
  */
@@ -10,57 +14,71 @@ public enum ConsoleColor {
     /**
      * 黑色
      */
-    BLACK(Ansi.Color.BLACK),
+    BLACK("BLACK",Ansi.Color.BLACK),
 
     /**
      * 红色
      */
-    RED(Ansi.Color.RED),
+    RED("RED",Ansi.Color.RED),
 
     /**
      * 绿色
      */
-    GREEN(Ansi.Color.GREEN),
+    GREEN("GREEN",Ansi.Color.GREEN),
 
     /**
      * 黄色
      */
-    YELLOW(Ansi.Color.YELLOW),
+    YELLOW("YELLOW",Ansi.Color.YELLOW),
 
     /**
      * 蓝色
      */
-    BLUE(Ansi.Color.BLUE),
+    BLUE("BLUE",Ansi.Color.BLUE),
 
     /**
      * 洋红
      */
-    MAGENTA(Ansi.Color.MAGENTA),
+    MAGENTA("MAGENTA",Ansi.Color.MAGENTA),
 
     /**
      * 青色
      */
-    CYAN(Ansi.Color.CYAN),
+    CYAN("CYAN",Ansi.Color.CYAN),
 
     /**
      * 白色
      */
-    WHITE(Ansi.Color.WHITE),
+    WHITE("WHITE",Ansi.Color.WHITE),
 
     /**
      * 系统默认颜色
      */
-    DEFAULT(Ansi.Color.DEFAULT)
+    DEFAULT("DEFAULT",Ansi.Color.DEFAULT)
     ;
 
     private final Ansi.Color color;
+    private final String colorName;
 
-    ConsoleColor(Ansi.Color color){
+    private static final Map<String,ConsoleColor> MAP = new HashMap<>(9);
+
+    ConsoleColor(String colorName, Ansi.Color color){
+        this.colorName = colorName;
         this.color = color;
     }
 
     public Ansi.Color getColor(){
         return this.color;
+    }
+
+    public ConsoleColor get(String colorName){
+        return MAP.get(colorName);
+    }
+
+    static {
+        Arrays.asList(ConsoleColor.values()).forEach(consoleColor -> {
+            MAP.put(consoleColor.colorName,consoleColor);
+        });
     }
 
 }
