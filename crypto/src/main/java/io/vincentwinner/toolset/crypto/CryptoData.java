@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * 加密数据
  */
-public class CryptoData implements Serializable,Cloneable {
+public class CryptoData implements Serializable {
 
     private static final long serialVersionUID = 1383436587267060424L;
 
@@ -48,11 +48,6 @@ public class CryptoData implements Serializable,Cloneable {
     public void setIv(IvParameterSpec iv) {
         if(iv != null && iv.getIV().length != 16) throw new IllegalArgumentException("初始化向量长度必须为 16 byte");
         this.iv = iv;
-    }
-
-    @Override
-    protected CryptoData clone() throws CloneNotSupportedException {
-        return (CryptoData) super.clone();
     }
 
 }
