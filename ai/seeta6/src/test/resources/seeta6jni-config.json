@@ -1,0 +1,51 @@
+{
+  "loadFunctions": [
+	"faceDetector",
+	"faceLandmark",
+	"faceLandmark68",
+	"faceRecognizer"
+  ],
+  "modelRoot":     "D:/Desktop/models",
+  "libraryRoot":   "D:/Desktop/winlib64",
+  "commonLibrary": [
+	"tennis",
+	"tennis_haswell",
+	"tennis_pentium",
+	"tennis_sandy_bridge",
+	"SeetaAuthorize"
+  ],
+  "faceDetector": {
+	"className":  "io.vincentwinner.toolset.ai.seeta6jni.FaceDetector",
+	"model":      "face_detector.csta",
+	"library":    "SeetaFaceDetector600",
+	"jni":        "SeetaFaceDetector600JNI",
+	"dependsOn": []
+  },
+  "faceLandmark": {
+	"className":  "io.vincentwinner.toolset.ai.seeta6jni.FaceLandmark",
+	"model":      "face_landmarker_pts5.csta",
+	"library":    "SeetaFaceLandmarker600",
+	"jni":        "SeetaFaceLandmarker600JNI",
+	"dependsOn": [
+	  "faceDetector"
+	]
+  },
+  "faceLandmark68": {
+	"className":  "io.vincentwinner.toolset.ai.seeta6jni.FaceLandmark",
+	"model":      "face_landmarker_pts68.csta",
+	"library":    "SeetaFaceLandmarker600",
+	"jni":        "SeetaFaceLandmarker60068JNI",
+	"dependsOn": [
+	  "faceDetector"
+	]
+  },
+  "faceRecognizer": {
+	"className":  "io.vincentwinner.toolset.ai.seeta6jni.FaceRecognizer",
+	"model":      "face_recognizer.csta",
+	"library":    "SeetaFaceRecognizer610",
+	"jni":        "SeetaFaceRecognizer610JNI",
+	"dependsOn": [
+	  "faceLandmark"
+	]
+  }
+}

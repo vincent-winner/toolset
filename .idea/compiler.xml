@@ -12,6 +12,7 @@
         <module name="os" />
         <module name="qrcode" />
         <module name="face-id" />
+        <module name="seeta6" />
         <module name="class-loader" />
         <module name="crypto" />
         <module name="ocr" />

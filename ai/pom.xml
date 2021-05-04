@@ -16,6 +16,7 @@
 	<modules>
 		<module>face-id</module>
 		<module>ocr</module>
+		<module>seeta6</module>
 	</modules>
 
 	<properties>
