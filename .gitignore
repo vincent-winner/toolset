@@ -32,3 +32,5 @@ build/
 .vscode/
 
 /work/**
+models/**
+lib/**
