@@ -19,9 +19,7 @@ public class SeetaImageUtil {
         if (image.getType() == BufferedImage.TYPE_3BYTE_BGR) {
             if (image.getData().getSampleModel() instanceof ComponentSampleModel) {
                 ComponentSampleModel sampleModel = (ComponentSampleModel) image.getData().getSampleModel();
-                if (Arrays.equals(sampleModel.getBandOffsets(), bandOffset)) {
-                    return true;
-                }
+                return Arrays.equals(sampleModel.getBandOffsets(), bandOffset);
             }
         }
         return false;
@@ -122,7 +120,7 @@ public class SeetaImageUtil {
                     .setChannels(3)
                     .setWidth(image.getWidth())
                     .setHeight(image.getHeight())
-                    .setData(SeetaImageUtil.getMatrixBGR(image));
+                    .setData(getMatrixBGR(image));
             return imageData;
         }
         return null;

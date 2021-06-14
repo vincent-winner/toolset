@@ -7,6 +7,10 @@
   ],
   "modelRoot":     "models",
   "libraryRoot":   "lib",
+  "corePoolSize":   6,
+  "maxPoolSize":    7,
+  "keepAliveTime":  1,
+  "blockQueueSize": 10,
   "commonLibrary": [
 	"tennis",
 	"tennis_haswell",

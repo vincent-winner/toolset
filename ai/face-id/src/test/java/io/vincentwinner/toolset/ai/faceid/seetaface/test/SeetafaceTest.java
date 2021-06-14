@@ -10,7 +10,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +40,7 @@ public class SeetafaceTest {
         InputStream picStream2 = SeetafaceTest.class.getClassLoader().getResourceAsStream("002.jpg");
         Future<FaceCompareResult> resultFuture = service.submitCompare(picStream1,picStream2);
         FaceCompareResult result = resultFuture.get();
-        Assert.assertFalse(result.isSamePerson());
+        Assert.assertTrue(result.isSamePerson());
         Assert.assertTrue( result.getSimilarRate() >= 0 && result.getSimilarRate() <= 1);
         System.out.printf("相似度：%f\n",result.getSimilarRate());
         System.out.printf("同一人：%s\n",result.isSamePerson() ? "是" : "否");
@@ -57,16 +56,6 @@ public class SeetafaceTest {
         picStream = SeetafaceTest.class.getClassLoader().getResourceAsStream("001.jpg");
         new ImageFrame(picStream,resultFuture,SeetaPointF[].class);
         TimeUnit.MILLISECONDS.sleep(3000);
-    }
-
-    @Test
-    public void test() throws Exception{
-        InputStream picStream1 = new FileInputStream("D:\\workspace\\java\\toolset\\ai\\seeta6\\src\\test\\resources\\0001.jpg");
-        InputStream picStream2 = new FileInputStream("D:\\workspace\\java\\toolset\\ai\\seeta6\\src\\test\\resources\\0002.jpg");
-        Future<FaceCompareResult> resultFuture = service.submitCompare(picStream1,picStream2);
-        FaceCompareResult result = resultFuture.get();
-        System.out.printf("相似度：%f\n",result.getSimilarRate());
-        System.out.printf("同一人：%s\n",result.isSamePerson() ? "是" : "否");
     }
 
 }

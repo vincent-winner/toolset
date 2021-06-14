@@ -1,5 +1,6 @@
-package io.vincentwinner.toolset.ai.seeta6jni;
+package io.vincentwinner.toolset.ai.seeta6jni.interfac;
 
+import io.vincentwinner.toolset.ai.seeta6jni.*;
 import io.vincentwinner.toolset.ai.seeta6jni.config.Seeta6Config;
 import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaFaceInfo;
 import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaImageData;
@@ -41,6 +42,7 @@ public class SingleThreadFaceHelper {
      */
     public static SeetaFaceInfo[] detectFace(BufferedImage img){
         SeetaImageData seetaImageData = SeetaImageUtil.toSeetaImageData(img);
+        if(seetaImageData == null) return null;
         SeetaFaceInfo[] faceInfo = faceDetector.detect(seetaImageData);
         if (faceInfo == null || faceInfo.length == 0) return null;
         return faceInfo;
@@ -62,6 +64,7 @@ public class SingleThreadFaceHelper {
      */
     public static SeetaPointF[] landmarkFace(BufferedImage img){
         SeetaImageData seetaImageData = SeetaImageUtil.toSeetaImageData(img);
+        if(seetaImageData == null) return null;
         SeetaFaceInfo[] faceInfo = faceDetector.detect(seetaImageData);
         if (faceInfo == null || faceInfo.length == 0) return null;
         SeetaFaceInfo maxFaceInfo = faceInfo[0];
@@ -80,6 +83,7 @@ public class SingleThreadFaceHelper {
      */
     public static SeetaPointF[] landmarkFace68(BufferedImage img){
         SeetaImageData seetaImageData = SeetaImageUtil.toSeetaImageData(img);
+        if(seetaImageData == null) return null;
         SeetaFaceInfo[] faceInfo = faceDetector.detect(seetaImageData);
         if (faceInfo == null || faceInfo.length == 0) return null;
         SeetaFaceInfo maxFaceInfo = faceInfo[0];
@@ -98,15 +102,17 @@ public class SingleThreadFaceHelper {
      */
     public static float[] extractFaceFeature(BufferedImage img){
         SeetaImageData seetaImageData = SeetaImageUtil.toSeetaImageData(img);
+        if(seetaImageData == null) return null;
         SeetaFaceInfo[] faceInfo = faceDetector.detect(seetaImageData);
         if (faceInfo == null || faceInfo.length == 0) return null;
         SeetaFaceInfo maxFaceInfo = faceInfo[0];
         for (SeetaFaceInfo seetaFaceInfo : faceInfo) {
-            if(seetaFaceInfo.getScore() > maxFaceInfo.getScore()){
+            if(seetaFaceInfo.getWidth() * seetaFaceInfo.getHeight() > maxFaceInfo.getWidth() * maxFaceInfo.getHeight()){
                 maxFaceInfo = seetaFaceInfo;
             }
         }
         SeetaPointF[] points = faceLandmark.mark(seetaImageData, new SeetaRect(maxFaceInfo));
+        if(points == null) return null;
         return faceRecognizer.extractFaceFeature(seetaImageData, points);
     }
 
@@ -118,6 +124,36 @@ public class SingleThreadFaceHelper {
      */
     public static float compareFaceFeature(float[] feature1,float[] feature2){
         return faceRecognizer.compare(feature1,feature2);
+    }
+
+    /**
+     * 比较两张图片中最大人脸的人脸特征
+     * @param img1 图片1
+     * @param img2 图片2
+     * @return 图片最大人脸特征相似度
+     *         返回值为 <code>-1</code> 代表参数为 null 或参数中的任意图片中未识别到人脸
+     */
+    public static float compareFaceFeature(BufferedImage img1,BufferedImage img2){
+        if(img1 == null || img2 == null) return -1f;
+        float[] feature1 = extractFaceFeature(img1);
+        float[] feature2 = extractFaceFeature(img2);
+        if(feature1 == null || feature1.length == 0 || feature2 == null || feature2.length == 0) return -1f;
+        return faceRecognizer.compare(feature1,feature2);
+    }
+
+    public static float compare(float[] feature1,float[] feature2){
+        if((feature1.length != feature2.length)
+                || feature1 == null
+                || feature1.length == 0
+                || feature2 == null
+                || feature2.length == 0
+        ) return -1;
+        int size = feature1.length;
+        float sum = 0;
+        for (int i = 0; i < size; i++) {
+            sum += feature1[i] * feature2[i];
+        }
+        return sum;
     }
 
 }

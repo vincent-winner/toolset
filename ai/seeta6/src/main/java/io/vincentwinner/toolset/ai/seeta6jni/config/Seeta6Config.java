@@ -42,6 +42,26 @@ public class Seeta6Config implements Serializable {
     private String libraryRoot;
 
     /**
+     * 常驻线程池线程数量
+     */
+    private Integer corePoolSize;
+
+    /**
+     * 线程池最大线程数量
+     */
+    private Integer maxPoolSize;
+
+    /**
+     * 线程池空闲线程存活时间
+     */
+    private Integer keepAliveTime;
+
+    /**
+     * 阻塞队列大小
+     */
+    private Integer blockQueueSize;
+
+    /**
      * 基本库，所有模块均需要用到的库，需要最先加载
      */
     private List<String> commonLibrary;
@@ -103,6 +123,38 @@ public class Seeta6Config implements Serializable {
     }
 
     /**
+     * 获取常驻线程池线程数量
+     * @return 常驻线程池线程数量
+     */
+    public Integer getCorePoolSize() {
+        return corePoolSize;
+    }
+
+    /**
+     * 获取线程池最大线程数量
+     * @return 线程池最大线程数量
+     */
+    public Integer getMaxPoolSize() {
+        return maxPoolSize;
+    }
+
+    /**
+     * 获取空闲线程存活时间
+     * @return 空闲线程存活时间
+     */
+    public Integer getKeepAliveTime() {
+        return keepAliveTime;
+    }
+
+    /**
+     * 获取阻塞队列大小
+     * @return 阻塞队列大小
+     */
+    public Integer getBlockQueueSize() {
+        return blockQueueSize;
+    }
+
+    /**
      * 获取基本库列表
      * 所有模块均依赖基本库，基本库应在其他库加载前加载
      * @return 基本库
@@ -156,8 +208,16 @@ public class Seeta6Config implements Serializable {
         return "Seeta6Config{" +
                 "modelRoot='" + modelRoot + '\'' +
                 ", libraryRoot='" + libraryRoot + '\'' +
+                ", corePoolSize=" + corePoolSize +
+                ", maxPoolSize=" + maxPoolSize +
+                ", keepAliveTime=" + keepAliveTime +
+                ", blockQueueSize=" + blockQueueSize +
                 ", commonLibrary=" + commonLibrary +
                 ", loadFunctions=" + loadFunctions +
+                ", faceDetector=" + faceDetector +
+                ", faceLandmark=" + faceLandmark +
+                ", faceLandmark68=" + faceLandmark68 +
+                ", faceRecognizer=" + faceRecognizer +
                 '}';
     }
 }
