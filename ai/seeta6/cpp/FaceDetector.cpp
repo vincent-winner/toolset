@@ -2,7 +2,7 @@
 #include <seeta/FaceDetector.h>
 #include <seeta/CFaceInfo.h>
 
-#include "io_vincentwinner_ai_seeta6jni_FaceDetector.h"
+#include "io_vincentwinner_toolset_ai_seeta6jni_FaceDetector.h"
 #include "JFieldStruct.h"
 #include "Util.h"
 #include "ClassConvertUtil.h"
