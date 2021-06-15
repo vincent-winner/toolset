@@ -76,5 +76,7 @@ JNIEXPORT jfloat JNICALL Java_io_vincentwinner_toolset_ai_seeta6jni_FaceRecogniz
 	jfloat* feature1Array = env->GetFloatArrayElements(feature1,JNI_FALSE);
 	jfloat* feature2Array = env->GetFloatArrayElements(feature2,JNI_FALSE);
 	float similar = FR->CalculateSimilarity(feature1Array,feature2Array);
+	env->ReleaseFloatArrayElements(feature1,feature1Array,JNI_COMMIT);
+    env->ReleaseFloatArrayElements(feature2,feature2Array,JNI_COMMIT);
 	return similar;
 }

@@ -46,7 +46,7 @@ SeetaImageData* toSeetaImageData(JNIEnv* env, jobject obj)
 	return imgdata;
 }
 
-JSeetaPoint getJSeetaPoint(JNIEnv* env) 
+JSeetaPoint getJSeetaPoint(JNIEnv* env)
 {
 	if (!_JSeetaPoint.init) {
 		jclass clazz = env->FindClass(_JSeetaPoint.className);
@@ -84,7 +84,7 @@ JSeetaPointF getJSeetaPointF(JNIEnv* env)
 
 SeetaPointF* toSeetaPointF(JNIEnv* env, jobject obj)
 {
-	
+
 	JSeetaPointF jclass = getJSeetaPointF(env);
 	SeetaPointF* pointf = new SeetaPointF();
 	pointf->x = env->GetIntField(obj, jclass.x);
@@ -100,8 +100,8 @@ SeetaPointF* toSeetaPointFArray(JNIEnv* env, jobjectArray objArray)
 	for (int i = 0; i < point_num; i++)
 	{
 		jobject jpoint = env->GetObjectArrayElement(objArray,i);
-		pointfs->x = env->GetDoubleField(jpoint, jpointf.x);
-		pointfs->y = env->GetDoubleField(jpoint, jpointf.y);
+		(pointfs + i)->x = env->GetDoubleField(jpoint, jpointf.x);
+		(pointfs + i)->y = env->GetDoubleField(jpoint, jpointf.y);
 		env->DeleteLocalRef(jpoint);
 	}
 	return pointfs;
@@ -124,7 +124,7 @@ JSeetaRect getJSeetaRect(JNIEnv* env)
 
 SeetaRect* toSeetaRect(JNIEnv* env, jobject obj)
 {
-	
+
 	JSeetaRect jclass = getJSeetaRect(env);
 	SeetaRect* rect = new SeetaRect();
 	rect->x = env->GetIntField(obj,jclass.x);
