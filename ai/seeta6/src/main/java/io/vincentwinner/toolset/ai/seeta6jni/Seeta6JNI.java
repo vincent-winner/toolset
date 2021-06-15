@@ -31,16 +31,20 @@ public class Seeta6JNI {
         functions.forEach(f -> {
             switch (f) {
                 case "faceDetector":
-                    if(FaceFunctionInstance.faceDetector == null) FaceFunctionInstance.faceDetector = new FaceDetector();
+                    if(FaceFunctionInstance.faceDetector == null)
+                        FaceFunctionInstance.faceDetector = new FaceDetector();
                     break;
                 case "faceLandmark":
-                    if(FaceFunctionInstance.faceLandmark == null) FaceFunctionInstance.faceLandmark = new FaceLandmark();
+                    if(FaceFunctionInstance.faceLandmark == null)
+                        FaceFunctionInstance.faceLandmark = new FaceLandmark();
                     break;
                 case "faceLandmark68":
-                    if(FaceFunctionInstance.faceLandmark68 == null) FaceFunctionInstance.faceLandmark68 = new FaceLandmark68();
+                    if(FaceFunctionInstance.faceLandmark68 == null)
+                        FaceFunctionInstance.faceLandmark68 = new FaceLandmark68();
                     break;
                 case "faceRecognizer":
-                    if(FaceFunctionInstance.faceRecognizer == null) FaceFunctionInstance.faceRecognizer = new FaceRecognizer();
+                    if(FaceFunctionInstance.faceRecognizer == null)
+                        FaceFunctionInstance.faceRecognizer = new FaceRecognizer();
                     break;
             }
         });
