@@ -65,6 +65,9 @@ https://gitee.com/vincent-repo/ai-face-id-seeta-lib/raw/master/bindata.tar.ab
 Process finished with exit code -1073740940 (0xC0000374)
 ```
 
+- 参考项目链接1：https://github.com/seetafaceengine/SeetaFace2
+- 参考项目链接2：https://github.com/jamesluozhiwei/seetafaceJNI
+
 #### <span id="compare">1.人脸对比</span>
 
 ```java
