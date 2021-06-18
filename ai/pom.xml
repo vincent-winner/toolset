@@ -17,6 +17,7 @@
 		<module>face-id</module>
 		<module>ocr</module>
 		<module>seeta6</module>
+		<module>words-segment</module>
 	</modules>
 
 	<properties>
@@ -28,6 +29,7 @@
 
 		<face.id.version>1.0.1</face.id.version>
 		<ocr.version>1.0.1</ocr.version>
+		<seeta6.version>1.0.1</seeta6.version>
 
 	</properties>
 
@@ -59,6 +61,11 @@
 				<version>1.2.0</version>
 			</dependency>
 			<dependency>
+				<groupId>com.huaban</groupId>
+				<artifactId>jieba-analysis</artifactId>
+				<version>1.0.2</version>
+			</dependency>
+			<dependency>
 				<groupId>io.vincentwinner.toolset</groupId>
 				<artifactId>os</artifactId>
 				<version>${osmodule.version}</version>
@@ -72,6 +79,11 @@
 				<groupId>io.vincentwinner.toolset</groupId>
 				<artifactId>ocr</artifactId>
 				<version>${ocr.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.vincentwinner.toolset</groupId>
+				<artifactId>seeta6</artifactId>
+				<version>${seeta6.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

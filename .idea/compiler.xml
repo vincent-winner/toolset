@@ -9,6 +9,7 @@
         <module name="console" />
         <module name="image" />
         <module name="core" />
+        <module name="words-segment" />
         <module name="os" />
         <module name="qrcode" />
         <module name="face-id" />
@@ -24,6 +25,7 @@
       <module name="toolset-all" target="8" />
       <module name="toolset-spring-boot-starter" target="8" />
       <module name="untitled" target="8" />
+      <module name="word-segment" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
