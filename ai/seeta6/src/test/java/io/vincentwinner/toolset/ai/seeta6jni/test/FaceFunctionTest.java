@@ -2,10 +2,8 @@ package io.vincentwinner.toolset.ai.seeta6jni.test;
 
 import io.vincentwinner.toolset.ai.seeta6jni.*;
 import io.vincentwinner.toolset.ai.seeta6jni.frame.ImageFrame;
-import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaFaceInfo;
-import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaImageData;
-import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaPointF;
-import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaRect;
+import io.vincentwinner.toolset.ai.seeta6jni.interfac.SingleThreadFaceHelper;
+import io.vincentwinner.toolset.ai.seeta6jni.structs.*;
 import io.vincentwinner.toolset.ai.seeta6jni.util.SeetaImageUtil;
 import io.vincentwinner.toolset.os.Computer;
 import org.junit.Assert;
@@ -14,6 +12,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.concurrent.TimeUnit;
@@ -122,6 +121,16 @@ public class FaceFunctionTest {
     }
 
     /**
+     * 测试人脸姿态估计功能
+     */
+    @Test
+    public void _06_testPoseEstimation() throws Exception {
+        SeetaAngle angle = SingleThreadFaceHelper.estimationPose(ImageIO.read(onePeoplePic));
+        new ImageFrame(new FileInputStream(onePeoplePic),angle);
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+    /**
      * 测试人脸检测 {@link #detectTimes} 次
      */
     @Test
@@ -223,6 +232,22 @@ public class FaceFunctionTest {
         System.out.println("测试 FaceRecognizer 特征对比 " + compareFaceFeatureTimes + " 次: ");
         System.out.println("  全部用时: " + (stop - start) / 1000d + " μs");
         System.out.println("  单次用时: " + (stop - start) / 1000d / compareFaceFeatureTimes + " μs");
+    }
+
+    /**
+     * 测试人脸姿态估计功能 {@link #compareFaceFeatureTimes} 次
+     */
+    @Test
+    public void _106_testPoseEstimation() throws Exception {
+        BufferedImage img = ImageIO.read(onePeoplePic);
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < compareFaceFeatureTimes; i++) {
+            SingleThreadFaceHelper.estimationPose(img);
+        }
+        long stop = System.currentTimeMillis();
+        System.out.println("测试 PoseEstimation 特征对比 " + compareFaceFeatureTimes + " 次: ");
+        System.out.println("  全部用时: " + (stop - start) / 1000d + " s");
+        System.out.println("  单次用时: " + (stop - start) / 1000d / compareFaceFeatureTimes + " s");
     }
 
 }

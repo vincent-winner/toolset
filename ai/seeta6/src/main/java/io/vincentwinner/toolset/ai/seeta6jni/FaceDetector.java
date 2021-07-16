@@ -60,6 +60,6 @@ public class FaceDetector extends FaceFunction {
      * @param imageData 图片数据
      * @return 人脸位置
      */
-    public native synchronized SeetaFaceInfo[] detect(SeetaImageData imageData);
+    public native SeetaFaceInfo[] detect(SeetaImageData imageData);
 
 }

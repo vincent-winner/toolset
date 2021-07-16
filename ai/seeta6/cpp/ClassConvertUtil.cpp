@@ -9,6 +9,7 @@ static JSeetaRect      _JSeetaRect((char*)"Lio/vincentwinner/toolset/ai/seeta6jn
 static JSeetaRegion    _JSeetaRegion((char*)"Lio/vincentwinner/toolset/ai/seeta6jni/structs/SeetaRegion;");
 static JSeetaSize      _JSeetaSize((char*)"Lio/vincentwinner/toolset/ai/seeta6jni/structs/SeetaSize;");
 static JSeetaFaceInfo  _JSeetaFaceInfo((char*)"Lio/vincentwinner/toolset/ai/seeta6jni/structs/SeetaFaceInfo;");
+static JSeetaAngle     _JSeetaAngle((char*)"Lio/vincentwinner/toolset/ai/seeta6jni/structs/SeetaAngle;");
 
 jobject newJObject(JNIEnv* env, JClassDef classDef)
 {
@@ -196,4 +197,18 @@ JSeetaFaceInfo getJSeetaFaceInfo(JNIEnv* env)
 		env->DeleteLocalRef(clazz);
 	}
 	return _JSeetaFaceInfo;
+}
+
+JSeetaAngle getJSeetaAngle(JNIEnv* env)
+{
+	if (!_JSeetaFaceInfo.init) {
+		jclass clazz = env->FindClass(_JSeetaAngle.className);
+		_JSeetaAngle.constructor = env->GetMethodID(clazz, "<init>", "()V");
+		_JSeetaAngle.yaw = env->GetFieldID(clazz,"yaw","F");
+		_JSeetaAngle.pitch = env->GetFieldID(clazz,"pitch","F");
+		_JSeetaAngle.roll = env->GetFieldID(clazz,"roll","F");
+		_JSeetaAngle.init = true;
+		env->DeleteLocalRef(clazz);
+	}
+	return _JSeetaAngle;
 }

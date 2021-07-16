@@ -12,7 +12,7 @@ import java.io.File;
  */
 public class FaceLandmark extends FaceFunction {
 
-    public FaceLandmark(){
+    protected FaceLandmark(){
         super();
     }
 

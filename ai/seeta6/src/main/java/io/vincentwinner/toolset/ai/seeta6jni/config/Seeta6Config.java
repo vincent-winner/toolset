@@ -91,6 +91,11 @@ public class Seeta6Config implements Serializable {
      */
     private Map<String, Object> faceRecognizer;
 
+    /**
+     * 人脸姿态估计 PoseEstimation 配置
+     */
+    private Map<String,Object> poseEstimation;
+
     private Seeta6Config(){
     }
 
@@ -203,6 +208,14 @@ public class Seeta6Config implements Serializable {
         return faceLandmark68;
     }
 
+    /**
+     * 获取人脸姿态估计（PoseEstimation）配置
+     * @return 人脸姿态估计配置
+     */
+    public Map<String,Object> getPoseEstimation(){
+        return poseEstimation;
+    }
+
     @Override
     public String toString() {
         return "Seeta6Config{" +
@@ -218,6 +231,7 @@ public class Seeta6Config implements Serializable {
                 ", faceLandmark=" + faceLandmark +
                 ", faceLandmark68=" + faceLandmark68 +
                 ", faceRecognizer=" + faceRecognizer +
+                ", poseEstimation=" + poseEstimation +
                 '}';
     }
 }

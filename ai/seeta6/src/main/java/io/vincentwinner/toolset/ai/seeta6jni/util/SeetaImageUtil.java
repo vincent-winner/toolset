@@ -1,6 +1,8 @@
 package io.vincentwinner.toolset.ai.seeta6jni.util;
 
+import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaFaceInfo;
 import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaImageData;
+import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaRect;
 
 import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
@@ -124,6 +126,29 @@ public class SeetaImageUtil {
             return imageData;
         }
         return null;
+    }
+
+    /**
+     * 获取人脸信息数组中评分最高的人脸位置信息
+     * @param faceInfos 人脸信息数组
+     * @return 最大人脸位置（评分最高的人脸）
+     *         如果人脸信息数组为空则返回 null
+     */
+    @SuppressWarnings("all")
+    public static SeetaFaceInfo getMaxFaceInfo(SeetaFaceInfo[] faceInfos){
+        if(faceInfos == null) return null;
+        return Arrays.stream(faceInfos).max((f1,f2) ->
+                Float.compare(f1.getScore(),f2.getScore())
+        ).get();
+    }
+
+    /**
+     * 获取人脸信息中评分最高的人脸位置
+     * @param faceInfos 人脸信息数组
+     * @return 最大人脸的位置
+     */
+    public static SeetaRect getMaxFaceRect(SeetaFaceInfo[] faceInfos){
+        return new SeetaRect(getMaxFaceInfo(faceInfos));
     }
 
 }

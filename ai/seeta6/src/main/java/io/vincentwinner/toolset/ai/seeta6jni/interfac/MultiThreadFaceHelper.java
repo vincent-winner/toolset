@@ -2,10 +2,7 @@ package io.vincentwinner.toolset.ai.seeta6jni.interfac;
 
 import io.vincentwinner.toolset.ai.seeta6jni.*;
 import io.vincentwinner.toolset.ai.seeta6jni.config.Seeta6Config;
-import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaFaceInfo;
-import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaImageData;
-import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaPointF;
-import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaRect;
+import io.vincentwinner.toolset.ai.seeta6jni.structs.*;
 import io.vincentwinner.toolset.ai.seeta6jni.util.SeetaImageUtil;
 
 import java.awt.image.BufferedImage;
@@ -19,7 +16,7 @@ import java.util.concurrent.*;
  * 人脸识别方法 C++ 源代码部分多线程状态仍然同步执行，故只采用多线程转换图像数据
  */
 @SuppressWarnings("all")
-public class FaceHandleService {
+public class MultiThreadFaceHelper {
 
     private static ExecutorService service;
 
@@ -27,12 +24,13 @@ public class FaceHandleService {
     private static FaceLandmark faceLandmark;
     private static FaceLandmark68 faceLandmark68;
     private static FaceRecognizer faceRecognizer;
+    private static PoseEstimation pointEstimation;
 
     private static class FaceHandleServiceInstance {
-        private static FaceHandleService INSTANCE = new FaceHandleService();
+        private static MultiThreadFaceHelper INSTANCE = new MultiThreadFaceHelper();
     }
 
-    private FaceHandleService(){
+    private MultiThreadFaceHelper(){
         Seeta6Config config = Seeta6Config.getInstance();
         service = new ThreadPoolExecutor(
                 config.getCorePoolSize(),
@@ -52,6 +50,8 @@ public class FaceHandleService {
                 faceLandmark68 = Seeta6JNI.getFaceLandmark68();
             }else if("faceRecognizer".equals(f)){
                 faceRecognizer = Seeta6JNI.getFaceRecognizer();
+            }else if("poseEstimation".equals(f)){
+                pointEstimation = Seeta6JNI.getPoseEstimation();
             }
         });
     }
@@ -70,7 +70,7 @@ public class FaceHandleService {
      * 获取人脸处理服务实例
      * @return 人脸处理服务实例
      */
-    public static FaceHandleService getInstance() {
+    public static MultiThreadFaceHelper getInstance() {
         return FaceHandleServiceInstance.INSTANCE;
     }
 
@@ -272,6 +272,37 @@ public class FaceHandleService {
             return faceRecognizer.compare(feature1,feature2);
         }
 
+    }
+
+    /**
+     * 人脸姿态估计任务
+     */
+    public static class PoseEstimationTask extends FaceHandleTask<SeetaAngle>{
+
+        private BufferedImage img;
+        private SeetaRect rect;
+
+        public PoseEstimationTask(BufferedImage img){
+            this.img = img;
+        }
+
+        public PoseEstimationTask(BufferedImage img,SeetaRect rect){
+            this.img = img;
+            this.rect = rect;
+        }
+
+        public PoseEstimationTask(BufferedImage img,SeetaFaceInfo faceInfo){
+            this.img = img;
+            this.rect = new SeetaRect(faceInfo);
+        }
+
+        @Override
+        public SeetaAngle call() throws Exception {
+            SeetaImageData imageData = SeetaImageUtil.toSeetaImageData(img);
+            rect = rect == null ? SeetaImageUtil.getMaxFaceRect(faceDetector.detect(imageData)) : rect;
+            if(rect == null) return null;
+            return pointEstimation.estimationPose(imageData,rect);
+        }
     }
 
 }

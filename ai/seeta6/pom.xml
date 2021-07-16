@@ -34,11 +34,49 @@
 			<artifactId>os</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- test dependencies start -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>opencv</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>opencv</artifactId>
+			<version>4.4.0-1.5.4</version>
+			<classifier>${project.platform}</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>openblas</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>openblas</artifactId>
+			<version>0.3.10-1.5.4</version>
+			<classifier>${project.platform}</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>javacpp</artifactId>
+			<version>1.5.4</version>
+			<classifier>${project.platform}</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>javacv</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- test dependencies stop -->
 	</dependencies>
 
 	<repositories>

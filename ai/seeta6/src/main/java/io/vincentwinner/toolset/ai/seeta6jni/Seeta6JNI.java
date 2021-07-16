@@ -46,6 +46,10 @@ public class Seeta6JNI {
                     if(FaceFunctionInstance.faceRecognizer == null)
                         FaceFunctionInstance.faceRecognizer = new FaceRecognizer();
                     break;
+                case "poseEstimation":
+                    if(FaceFunctionInstance.poseEstimation == null)
+                        FaceFunctionInstance.poseEstimation = new PoseEstimation();
+                    break;
             }
         });
     }
@@ -58,6 +62,7 @@ public class Seeta6JNI {
         private static FaceLandmark faceLandmark = null;
         private static FaceLandmark68 faceLandmark68 = null;
         private static FaceRecognizer faceRecognizer = null;
+        private static PoseEstimation poseEstimation = null;
     }
 
     /**
@@ -103,6 +108,13 @@ public class Seeta6JNI {
             return FaceFunctionInstance.faceRecognizer;
         }
         throw new RuntimeException("未启用的方法 faceRecognizer，请在配置文件中启用");
+    }
+
+    public static PoseEstimation getPoseEstimation(){
+        if(FaceFunctionInstance.faceRecognizer != null){
+            return FaceFunctionInstance.poseEstimation;
+        }
+        throw new RuntimeException("未启用的方法 poseEstimation，请在配置文件中启用");
     }
 
 }

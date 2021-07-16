@@ -32,4 +32,6 @@ SeetaSize* toSeetaSize(JNIEnv* env, jobject obj);
 
 JSeetaFaceInfo getJSeetaFaceInfo(JNIEnv* env);
 
+JSeetaAngle getJSeetaAngle(JNIEnv* env);
+
 #endif // !CLASS_CONVERT_UTIL_H

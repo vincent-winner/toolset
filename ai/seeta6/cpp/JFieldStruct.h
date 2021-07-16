@@ -76,6 +76,14 @@ struct JSeetaSize : JClassDef
 	JSeetaSize(char* _className) : JClassDef(_className) {}
 };
 
+struct JSeetaAngle : JClassDef
+{
+	jfieldID yaw;
+	jfieldID pitch;
+	jfieldID roll;
+	JSeetaAngle(char* _className) : JClassDef(_className) {}
+};
+
 #ifdef __cplusplus
 }
 #endif // __cplusplus

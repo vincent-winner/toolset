@@ -1,5 +1,6 @@
 package io.vincentwinner.toolset.ai.seeta6jni.frame;
 
+import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaAngle;
 import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaFaceInfo;
 import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaPointF;
 import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaRect;
@@ -25,8 +26,8 @@ public class ImageFrame extends JFrame {
             );
         }
         setTitle("Result");
-            ImagePanel panel = new ImagePanel(picStream,rects);
-            add(panel);
+        ImagePanel panel = new ImagePanel(picStream,rects);
+        add(panel);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -40,6 +41,20 @@ public class ImageFrame extends JFrame {
     public ImageFrame(InputStream picStream, SeetaPointF[] points){
         setTitle("Result");
         ImagePanel panel = new ImagePanel(picStream,points);
+        add(panel);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                e.getWindow().dispose();
+            }
+        });
+        this.pack();
+        this.setVisible(true);
+    }
+
+    public ImageFrame(InputStream picStream, SeetaAngle angle){
+        setTitle("result");
+        ImagePanel panel = new ImagePanel(picStream,angle);
         add(panel);
         this.addWindowListener(new WindowAdapter() {
             @Override

@@ -3,10 +3,15 @@
 	"faceDetector",
 	"faceLandmark",
 	"faceLandmark68",
-	"faceRecognizer"
+	"faceRecognizer",
+	"poseEstimation"
   ],
   "modelRoot":     "D:/Desktop/models",
   "libraryRoot":   "D:/Desktop/winlib64",
+  "corePoolSize":   6,
+  "maxPoolSize":    7,
+  "keepAliveTime":  1,
+  "blockQueueSize": 10,
   "commonLibrary": [
 	"tennis",
 	"tennis_haswell",
@@ -46,6 +51,15 @@
 	"jni":        "SeetaFaceRecognizer610JNI",
 	"dependsOn": [
 	  "faceLandmark"
+	]
+  },
+  "poseEstimation": {
+	"className":  "io.vincentwinner.toolset.ai.seeta6jni.PoseEstimation",
+	"model":      "pose_estimation.csta",
+	"library":    "SeetaPoseEstimation600",
+	"jni":        "SeetaPoseEstimation600JNI",
+	"dependsOn": [
+	  "faceDetector"
 	]
   }
 }

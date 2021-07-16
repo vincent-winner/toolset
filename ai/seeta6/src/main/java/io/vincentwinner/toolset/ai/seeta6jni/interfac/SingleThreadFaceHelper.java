@@ -2,10 +2,7 @@ package io.vincentwinner.toolset.ai.seeta6jni.interfac;
 
 import io.vincentwinner.toolset.ai.seeta6jni.*;
 import io.vincentwinner.toolset.ai.seeta6jni.config.Seeta6Config;
-import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaFaceInfo;
-import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaImageData;
-import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaPointF;
-import io.vincentwinner.toolset.ai.seeta6jni.structs.SeetaRect;
+import io.vincentwinner.toolset.ai.seeta6jni.structs.*;
 import io.vincentwinner.toolset.ai.seeta6jni.util.SeetaImageUtil;
 
 import java.awt.image.BufferedImage;
@@ -25,6 +22,8 @@ public class SingleThreadFaceHelper {
                 faceLandmark68 = Seeta6JNI.getFaceLandmark68();
             }else if("faceRecognizer".equals(f)){
                 faceRecognizer = Seeta6JNI.getFaceRecognizer();
+            }else if("poseEstimation".equals(f)){
+                pointEstimation = Seeta6JNI.getPoseEstimation();
             }
         });
     }
@@ -33,6 +32,7 @@ public class SingleThreadFaceHelper {
     private static FaceLandmark faceLandmark;
     private static FaceLandmark68 faceLandmark68;
     private static FaceRecognizer faceRecognizer;
+    private static PoseEstimation pointEstimation;
 
     /**
      * 检测图片中所有人脸的位置并给出每个人脸的评分
@@ -141,7 +141,14 @@ public class SingleThreadFaceHelper {
         return faceRecognizer.compare(feature1,feature2);
     }
 
-    public static float compare(float[] feature1,float[] feature2){
+    /**
+     * C++ 移植原生人脸特征相似度对比方法
+     * @param feature1 特征数组1
+     * @param feature2 特征数组2
+     * @return 特征相似度
+     *         返回值为 <code>-1</code> 代表参数为 null 或参数中的任意图片中未识别到人脸
+     */
+    public static float compareFaceFeatureNative(float[] feature1, float[] feature2){
         if((feature1.length != feature2.length)
                 || feature1 == null
                 || feature1.length == 0
@@ -154,6 +161,20 @@ public class SingleThreadFaceHelper {
             sum += feature1[i] * feature2[i];
         }
         return sum;
+    }
+
+    /**
+     * 估计人脸姿态
+     * @param img 包含人脸的图像
+     * @return 人脸姿态角（欧拉角 yaw, pitch, roll）
+     */
+    public static SeetaAngle estimationPose(BufferedImage img){
+        SeetaImageData seetaImageData = SeetaImageUtil.toSeetaImageData(img);
+        if(seetaImageData == null) return null;
+        SeetaFaceInfo[] faceInfo = faceDetector.detect(seetaImageData);
+        if (faceInfo == null || faceInfo.length == 0) return null;
+        SeetaRect maxFaceRect = SeetaImageUtil.getMaxFaceRect(faceInfo);
+        return pointEstimation.estimationPose(seetaImageData,maxFaceRect);
     }
 
 }
