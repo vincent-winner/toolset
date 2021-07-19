@@ -7,7 +7,7 @@
 	"poseEstimation"
   ],
   "modelRoot":     "models",
-  "libraryRoot":   "winlib64",
+  "libraryRoot":   "lib",
   "corePoolSize":   6,
   "maxPoolSize":    7,
   "keepAliveTime":  1,
