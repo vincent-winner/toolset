@@ -13,7 +13,7 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DigestAlgorithmTest {
 
-    private SingletonEncoderFactory encoderFactory = new SingletonEncoderFactory();
+    private SingletonEncoderFactory encoderFactory = new SingletonEncoderFactory("md5");
     private String s = "123你好abc!@#";
 
     /**
@@ -21,7 +21,7 @@ public class DigestAlgorithmTest {
      */
     @Test
     public void _01_testMD5(){
-        MD5Crypto.MD5Encoder encoder = (MD5Crypto.MD5Encoder)encoderFactory.getEncoder("md5");
+        MD5Crypto.MD5Encoder encoder = (MD5Crypto.MD5Encoder)encoderFactory.getEncoder();
         String msg = encoder.encode(s);
         Assert.assertEquals(32,msg.length());
         System.out.println(msg);
@@ -32,7 +32,7 @@ public class DigestAlgorithmTest {
      */
     @Test
     public void _02_testMD516(){
-        MD5Crypto.MD5Encoder encoder = (MD5Crypto.MD5Encoder)encoderFactory.getEncoder("md5");
+        MD5Crypto.MD5Encoder encoder = (MD5Crypto.MD5Encoder)encoderFactory.getEncoder();
         String msg = encoder.encode16(s);
         Assert.assertEquals(16,msg.length());
         System.out.println(msg);

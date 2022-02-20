@@ -30,7 +30,7 @@ public class WordHandlerTest {
 
     @After
     public void afterAddSplitLine(){
-        System.out.println("---------------------------分割线---------------------------");
+        System.out.println("\n---------------------------分割线---------------------------");
     }
 
     @Test
