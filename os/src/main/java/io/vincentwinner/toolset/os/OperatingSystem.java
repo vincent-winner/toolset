@@ -5,7 +5,6 @@ import oshi.software.os.OSProcess;
 import oshi.software.os.OSService;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -209,9 +208,8 @@ public final class OperatingSystem {
      * @return 当前系统所有服务信息
      */
     public List<OSService> getServices(){
-        return Arrays.asList(os.getServices());
+        return os.getServices();
     }
-
 
 
     /**
@@ -233,7 +231,7 @@ public final class OperatingSystem {
             case WINDOWS_NT: return osInfo.isWindowsNT();
             case WINDOWS_XP: return osInfo.isWindowsXP();
             case WINDOWS_7: return osInfo.isWindows7();
-            case WINDOWS_8: return osInfo.isWindoows8();
+            case WINDOWS_8: return osInfo.isWindows8();
             case WINDOWS_8_1: return osInfo.isWindows8_1();
             case WINDOWS_10: return osInfo.isWindows10();
             case AIX: return osInfo.isAix();
